@@ -1,0 +1,1429 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Create VLC AST bitStatement 1`] = `
+Program {
+  "statements": Array [
+    VariableDeclaration {
+      "id": Identifier {
+        "name": "ControlByte0",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [],
+      "type": "VariableDeclaration",
+    },
+    BitDeclaration {
+      "id": Identifier {
+        "name": "Control1",
+        "type": "Identifier",
+      },
+      "index": 1,
+      "init": Identifier {
+        "name": "ControlByte0",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [],
+      "type": "BitDeclaration",
+    },
+    BitDeclaration {
+      "id": Identifier {
+        "name": "Control2",
+        "type": "Identifier",
+      },
+      "index": 2,
+      "init": Identifier {
+        "name": "ControlByte0",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [],
+      "type": "BitDeclaration",
+    },
+    BitDeclaration {
+      "id": Identifier {
+        "name": "Control3",
+        "type": "Identifier",
+      },
+      "index": 4,
+      "init": Identifier {
+        "name": "ControlByte0",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [],
+      "type": "BitDeclaration",
+    },
+    BitDeclaration {
+      "id": Identifier {
+        "name": "Control4",
+        "type": "Identifier",
+      },
+      "index": 8,
+      "init": Identifier {
+        "name": "ControlByte0",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [],
+      "type": "BitDeclaration",
+    },
+    BitDeclaration {
+      "id": Identifier {
+        "name": "Control5",
+        "type": "Identifier",
+      },
+      "index": 16,
+      "init": Identifier {
+        "name": "ControlByte0",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [],
+      "type": "BitDeclaration",
+    },
+    BitDeclaration {
+      "id": Identifier {
+        "name": "Control6",
+        "type": "Identifier",
+      },
+      "index": 32,
+      "init": Identifier {
+        "name": "ControlByte0",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [],
+      "type": "BitDeclaration",
+    },
+    BitDeclaration {
+      "id": Identifier {
+        "name": "Control7",
+        "type": "Identifier",
+      },
+      "index": 64,
+      "init": Identifier {
+        "name": "ControlByte0",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [],
+      "type": "BitDeclaration",
+    },
+    BitDeclaration {
+      "id": Identifier {
+        "name": "Control8",
+        "type": "Identifier",
+      },
+      "index": 128,
+      "init": Identifier {
+        "name": "ControlByte0",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [],
+      "type": "BitDeclaration",
+    },
+  ],
+  "type": "Program",
+}
+`;
+
+exports[`Create VLC AST file1 1`] = `
+Program {
+  "statements": Array [
+    AssignmentStatement {
+      "leadingComments": Array [
+        ";=======================================================================",
+        ";    TE13_BareBones_Ver1  TestVersion",
+        ";****************************************************************************",
+      ],
+      "left": Identifier {
+        "name": "VCL_App_Ver",
+        "type": "Identifier",
+      },
+      "right": Literal {
+        "raw": "1010",
+        "type": "Literal",
+        "value": 1010,
+      },
+      "trailingComments": Array [],
+      "type": "AssignmentStatement",
+    },
+    VariableDeclaration {
+      "id": Identifier {
+        "name": "HLC1_Spare",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [
+        ";",
+        ";========================================================================",
+        ";   Description - Common Miscellaneous and Exception Variables",
+        ";========================================================================",
+      ],
+      "trailingComments": Array [
+        ";empty byte for TRANSMIT",
+      ],
+      "type": "VariableDeclaration",
+    },
+    VariableDeclaration {
+      "id": Identifier {
+        "name": "ByteSpaceFiller",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [
+        ";Used as a general variable when byte is to be skipped during reading",
+      ],
+      "type": "VariableDeclaration",
+    },
+    AssignmentStatement {
+      "leadingComments": Array [
+        ";=======================================================================",
+        ";   I/O Requirements - This is the area where specific hardware",
+        ";   requirements are communicated.",
+        ";-----------------------------------------------------------------------",
+        ";   PWM OUTPUTS",
+      ],
+      "left": Identifier {
+        "name": "Driver_2_Mode",
+        "type": "Identifier",
+      },
+      "right": Literal {
+        "raw": "1",
+        "type": "Literal",
+        "value": 1,
+      },
+      "trailingComments": Array [
+        ";   Pin1",
+      ],
+      "type": "AssignmentStatement",
+    },
+    AssignmentStatement {
+      "leadingComments": Array [],
+      "left": Identifier {
+        "name": "Driver_3_Mode",
+        "type": "Identifier",
+      },
+      "right": Literal {
+        "raw": "1",
+        "type": "Literal",
+        "value": 1,
+      },
+      "trailingComments": Array [
+        ";   Pin2",
+      ],
+      "type": "AssignmentStatement",
+    },
+    AssignmentStatement {
+      "leadingComments": Array [],
+      "left": Identifier {
+        "name": "Driver_4_Mode",
+        "type": "Identifier",
+      },
+      "right": Literal {
+        "raw": "1",
+        "type": "Literal",
+        "value": 1,
+      },
+      "trailingComments": Array [
+        ";   Pin3",
+      ],
+      "type": "AssignmentStatement",
+    },
+    AssignmentStatement {
+      "leadingComments": Array [],
+      "left": Identifier {
+        "name": "Driver_5_Mode",
+        "type": "Identifier",
+      },
+      "right": Literal {
+        "raw": "1",
+        "type": "Literal",
+        "value": 1,
+      },
+      "trailingComments": Array [
+        ";   Pin4",
+      ],
+      "type": "AssignmentStatement",
+    },
+    AssignmentStatement {
+      "leadingComments": Array [],
+      "left": Identifier {
+        "name": "Driver_12_Mode",
+        "type": "Identifier",
+      },
+      "right": Literal {
+        "raw": "1",
+        "type": "Literal",
+        "value": 1,
+      },
+      "trailingComments": Array [],
+      "type": "AssignmentStatement",
+    },
+    AssignmentStatement {
+      "leadingComments": Array [
+        ";Half_Bridge_2_Mode = 1",
+      ],
+      "left": Identifier {
+        "name": "Half_Bridge_2_Mode",
+        "type": "Identifier",
+      },
+      "right": Literal {
+        "raw": "0",
+        "type": "Literal",
+        "value": 0,
+      },
+      "trailingComments": Array [],
+      "type": "AssignmentStatement",
+    },
+    AssignmentStatement {
+      "leadingComments": Array [
+        "; Digital Output",
+        ";Digital_Out_1_Mode = 1;",
+        ";Digital_Out_2_Mode = 1;  Try DigOut2 which goes through feedback Diode",
+      ],
+      "left": Identifier {
+        "name": "Digital_Out_3_Mode",
+        "type": "Identifier",
+      },
+      "right": Literal {
+        "raw": "1",
+        "type": "Literal",
+        "value": 1,
+      },
+      "trailingComments": Array [],
+      "type": "AssignmentStatement",
+    },
+    ConstantDeclaration {
+      "id": Identifier {
+        "name": "cPWM_Output",
+        "type": "Identifier",
+      },
+      "init": Literal {
+        "raw": "1000",
+        "type": "Literal",
+        "value": 1000,
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [
+        ";all PWMs at 24 Volts",
+      ],
+      "type": "ConstantDeclaration",
+    },
+    AliasDeclaration {
+      "id": Identifier {
+        "name": "Startup_Delay",
+        "type": "Identifier",
+      },
+      "init": Identifier {
+        "name": "DLY1",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [
+        ";------------------------------------",
+        ";    DELAYS",
+        ";------------------------------------",
+      ],
+      "trailingComments": Array [],
+      "type": "AliasDeclaration",
+    },
+    AliasDeclaration {
+      "id": Identifier {
+        "name": "Startup_Delay_Output",
+        "type": "Identifier",
+      },
+      "init": Identifier {
+        "name": "DLY1_Output",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [],
+      "type": "AliasDeclaration",
+    },
+    VariableDeclaration {
+      "id": Identifier {
+        "name": "HLCSpaceFiller",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [
+        ";=============================================================================",
+        ";         Miscellaneous Variables",
+        ";",
+        ";=============================================================================",
+      ],
+      "trailingComments": Array [
+        ";    ;used for unused bytes",
+      ],
+      "type": "VariableDeclaration",
+    },
+    ExpressionStatement {
+      "expression": CallExpression {
+        "arguments": Array [
+          Identifier {
+            "name": "Startup_Delay",
+            "type": "Identifier",
+          },
+          Literal {
+            "raw": "500",
+            "type": "Literal",
+            "value": 500,
+          },
+        ],
+        "callee": Identifier {
+          "name": "Setup_Delay",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "leadingComments": Array [
+        ";=======================================================================",
+        ";   One Time Initialization",
+        ";-----------------------------------------------------------------------",
+      ],
+      "trailingComments": Array [],
+      "type": "ExpressionStatement",
+    },
+    WhileStatement {
+      "body": BlockStatement {
+        "body": Array [],
+        "leadingComments": Array [],
+        "trailingComments": Array [],
+        "type": "BlockStatement",
+      },
+      "leadingComments": Array [],
+      "test": BinaryExpression {
+        "left": Identifier {
+          "name": "Startup_Delay_Output",
+          "type": "Identifier",
+        },
+        "operator": "<>",
+        "right": Literal {
+          "raw": "0",
+          "type": "Literal",
+          "value": 0,
+        },
+        "type": "BinaryExpression",
+      },
+      "trailingComments": Array [],
+      "type": "WhileStatement",
+    },
+    CallStatement {
+      "label": Identifier {
+        "name": "Setup_Mailboxes",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [],
+      "type": "CallStatement",
+    },
+    ExpressionStatement {
+      "expression": CallExpression {
+        "arguments": Array [
+          Identifier {
+            "name": "SAFETY_OUT",
+            "type": "Identifier",
+          },
+          Literal {
+            "raw": "1",
+            "type": "Literal",
+            "value": 1,
+          },
+        ],
+        "callee": Identifier {
+          "name": "Put_Driver",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [],
+      "type": "ExpressionStatement",
+    },
+    LabelStatement {
+      "label": Identifier {
+        "name": "Mainloop",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [
+        ";=======================================================================",
+        ";   Main Program Loop",
+        ";   The continuously running portion of the program should be placed",
+        ";   here.",
+        ";-----------------------------------------------------------------------",
+      ],
+      "trailingComments": Array [],
+      "type": "LabelStatement",
+    },
+    AssignmentStatement {
+      "leadingComments": Array [],
+      "left": Identifier {
+        "name": "autouser300",
+        "type": "Identifier",
+      },
+      "right": BinaryExpression {
+        "left": Identifier {
+          "name": "autouser300",
+          "type": "Identifier",
+        },
+        "operator": "+",
+        "right": Literal {
+          "raw": "1",
+          "type": "Literal",
+          "value": 1,
+        },
+        "type": "BinaryExpression",
+      },
+      "trailingComments": Array [
+        ";Counter for testing",
+      ],
+      "type": "AssignmentStatement",
+    },
+    CallStatement {
+      "label": Identifier {
+        "name": "Handle_TestMessage_098",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [
+        "; to 0x98 Test FRONT and REAR",
+      ],
+      "trailingComments": Array [
+        ";",
+      ],
+      "type": "CallStatement",
+    },
+    GoToStatement {
+      "label": Identifier {
+        "name": "Mainloop",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [],
+      "type": "GoToStatement",
+    },
+    LabelStatement {
+      "label": Identifier {
+        "name": "Setup_Mailboxes",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [
+        ";=======================================================================",
+        ";            Subroutine :: Setup_Mailboxes",
+        ";=======================================================================",
+      ],
+      "trailingComments": Array [],
+      "type": "LabelStatement",
+    },
+    VariableDeclaration {
+      "id": Identifier {
+        "name": "TestMessage",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [
+        ";=====================================================================================================",
+        ";   TestMessage 0x98        sent by  for Testing Misc Drivers",
+        ";========================================================================================================",
+      ],
+      "trailingComments": Array [
+        ";0x98",
+      ],
+      "type": "VariableDeclaration",
+    },
+    VariableDeclaration {
+      "id": Identifier {
+        "name": "Activate_REAR",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [],
+      "type": "VariableDeclaration",
+    },
+    VariableDeclaration {
+      "id": Identifier {
+        "name": "Activate_FRONT",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [],
+      "type": "VariableDeclaration",
+    },
+    VariableDeclaration {
+      "id": Identifier {
+        "name": "Activate_PWM3",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [],
+      "type": "VariableDeclaration",
+    },
+    VariableDeclaration {
+      "id": Identifier {
+        "name": "Activate_PWM4",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [],
+      "type": "VariableDeclaration",
+    },
+    VariableDeclaration {
+      "id": Identifier {
+        "name": "Activate_PWM2_Switch",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [],
+      "type": "VariableDeclaration",
+    },
+    VariableDeclaration {
+      "id": Identifier {
+        "name": "Activate_PWM5",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [],
+      "type": "VariableDeclaration",
+    },
+    AssignmentStatement {
+      "leadingComments": Array [],
+      "left": Identifier {
+        "name": "TestMessage",
+        "type": "Identifier",
+      },
+      "right": CallExpression {
+        "arguments": Array [
+          Identifier {
+            "name": "CAN_PORT_1",
+            "type": "Identifier",
+          },
+          Identifier {
+            "name": "C_RCV",
+            "type": "Identifier",
+          },
+        ],
+        "callee": Identifier {
+          "name": "assign_can_mailbox",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "trailingComments": Array [],
+      "type": "AssignmentStatement",
+    },
+    ExpressionStatement {
+      "expression": CallExpression {
+        "arguments": Array [
+          Identifier {
+            "name": "TestMessage",
+            "type": "Identifier",
+          },
+          Literal {
+            "raw": "0",
+            "type": "Literal",
+            "value": 0,
+          },
+          Literal {
+            "raw": "0x98",
+            "type": "Literal",
+            "value": 152,
+          },
+          Literal {
+            "raw": "0",
+            "type": "Literal",
+            "value": 0,
+          },
+          Literal {
+            "raw": "0x7FF",
+            "type": "Literal",
+            "value": 2047,
+          },
+          Literal {
+            "raw": "0",
+            "type": "Literal",
+            "value": 0,
+          },
+          Literal {
+            "raw": "0",
+            "type": "Literal",
+            "value": 0,
+          },
+          Literal {
+            "raw": "50",
+            "type": "Literal",
+            "value": 50,
+          },
+          Literal {
+            "raw": "40",
+            "type": "Literal",
+            "value": 40,
+          },
+          Literal {
+            "raw": "0",
+            "type": "Literal",
+            "value": 0,
+          },
+        ],
+        "callee": Identifier {
+          "name": "Setup_CAN_Receive_Mailbox",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [],
+      "type": "ExpressionStatement",
+    },
+    ExpressionStatement {
+      "expression": CallExpression {
+        "arguments": Array [
+          Identifier {
+            "name": "TestMessage",
+            "type": "Identifier",
+          },
+          Identifier {
+            "name": "Activate_REAR",
+            "type": "Identifier",
+          },
+          Literal {
+            "raw": "1",
+            "type": "Literal",
+            "value": 1,
+          },
+          Literal {
+            "raw": "0",
+            "type": "Literal",
+            "value": 0,
+          },
+        ],
+        "callee": Identifier {
+          "name": "Setup_CAN_Receive_Data",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [
+        ";   Byte 0",
+      ],
+      "type": "ExpressionStatement",
+    },
+    ExpressionStatement {
+      "expression": CallExpression {
+        "arguments": Array [
+          Identifier {
+            "name": "TestMessage",
+            "type": "Identifier",
+          },
+          Identifier {
+            "name": "Activate_FRONT",
+            "type": "Identifier",
+          },
+          Literal {
+            "raw": "1",
+            "type": "Literal",
+            "value": 1,
+          },
+          Literal {
+            "raw": "0",
+            "type": "Literal",
+            "value": 0,
+          },
+        ],
+        "callee": Identifier {
+          "name": "Setup_CAN_Receive_Data",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [
+        ";   Byte 1",
+      ],
+      "type": "ExpressionStatement",
+    },
+    ExpressionStatement {
+      "expression": CallExpression {
+        "arguments": Array [
+          Identifier {
+            "name": "TestMessage",
+            "type": "Identifier",
+          },
+          Identifier {
+            "name": "Activate_PWM3",
+            "type": "Identifier",
+          },
+          Literal {
+            "raw": "1",
+            "type": "Literal",
+            "value": 1,
+          },
+          Literal {
+            "raw": "0",
+            "type": "Literal",
+            "value": 0,
+          },
+        ],
+        "callee": Identifier {
+          "name": "Setup_CAN_Receive_Data",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [
+        ";   Byte 2",
+      ],
+      "type": "ExpressionStatement",
+    },
+    ExpressionStatement {
+      "expression": CallExpression {
+        "arguments": Array [
+          Identifier {
+            "name": "TestMessage",
+            "type": "Identifier",
+          },
+          Identifier {
+            "name": "Activate_PWM4",
+            "type": "Identifier",
+          },
+          Literal {
+            "raw": "1",
+            "type": "Literal",
+            "value": 1,
+          },
+          Literal {
+            "raw": "0",
+            "type": "Literal",
+            "value": 0,
+          },
+        ],
+        "callee": Identifier {
+          "name": "Setup_CAN_Receive_Data",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [
+        ";   Byte 3",
+      ],
+      "type": "ExpressionStatement",
+    },
+    ExpressionStatement {
+      "expression": CallExpression {
+        "arguments": Array [
+          Identifier {
+            "name": "TestMessage",
+            "type": "Identifier",
+          },
+          Identifier {
+            "name": "Activate_PWM2_Switch",
+            "type": "Identifier",
+          },
+          Literal {
+            "raw": "1",
+            "type": "Literal",
+            "value": 1,
+          },
+          Literal {
+            "raw": "0",
+            "type": "Literal",
+            "value": 0,
+          },
+        ],
+        "callee": Identifier {
+          "name": "Setup_CAN_Receive_Data",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [
+        ";   Byte 4  Switch",
+      ],
+      "type": "ExpressionStatement",
+    },
+    ExpressionStatement {
+      "expression": CallExpression {
+        "arguments": Array [
+          Identifier {
+            "name": "TestMessage",
+            "type": "Identifier",
+          },
+          Identifier {
+            "name": "Activate_PWM5",
+            "type": "Identifier",
+          },
+          Literal {
+            "raw": "1",
+            "type": "Literal",
+            "value": 1,
+          },
+          Literal {
+            "raw": "0",
+            "type": "Literal",
+            "value": 0,
+          },
+        ],
+        "callee": Identifier {
+          "name": "Setup_CAN_Receive_Data",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [
+        ";   Byte 5",
+      ],
+      "type": "ExpressionStatement",
+    },
+    ExpressionStatement {
+      "expression": CallExpression {
+        "arguments": Array [
+          Identifier {
+            "name": "TestMessage",
+            "type": "Identifier",
+          },
+          Identifier {
+            "name": "ByteSpaceFiller",
+            "type": "Identifier",
+          },
+          Literal {
+            "raw": "1",
+            "type": "Literal",
+            "value": 1,
+          },
+          Literal {
+            "raw": "0",
+            "type": "Literal",
+            "value": 0,
+          },
+        ],
+        "callee": Identifier {
+          "name": "Setup_CAN_Receive_Data",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [
+        ";   Byte 6",
+      ],
+      "type": "ExpressionStatement",
+    },
+    ExpressionStatement {
+      "expression": CallExpression {
+        "arguments": Array [
+          Identifier {
+            "name": "TestMessage",
+            "type": "Identifier",
+          },
+          Identifier {
+            "name": "ByteSpaceFiller",
+            "type": "Identifier",
+          },
+          Literal {
+            "raw": "1",
+            "type": "Literal",
+            "value": 1,
+          },
+          Literal {
+            "raw": "0",
+            "type": "Literal",
+            "value": 0,
+          },
+        ],
+        "callee": Identifier {
+          "name": "Setup_CAN_Receive_Data",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [
+        ";   Byte 7",
+      ],
+      "type": "ExpressionStatement",
+    },
+    ExpressionStatement {
+      "expression": CallExpression {
+        "arguments": Array [
+          Identifier {
+            "name": "TestMessage",
+            "type": "Identifier",
+          },
+        ],
+        "callee": Identifier {
+          "name": "enable_receive_Mailbox",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [
+        ";",
+      ],
+      "type": "ExpressionStatement",
+    },
+    ExpressionStatement {
+      "expression": CallExpression {
+        "arguments": Array [
+          Identifier {
+            "name": "CAN_PORT_1",
+            "type": "Identifier",
+          },
+          Identifier {
+            "name": "ENTER_OPERATIONAL",
+            "type": "Identifier",
+          },
+        ],
+        "callee": Identifier {
+          "name": "Setup_NMT_State",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "leadingComments": Array [
+        ";========================================================================================",
+        ";***********************************************************************",
+        ";   NMT CONTROL",
+        ";-----------------------------------------------------------------------",
+      ],
+      "trailingComments": Array [],
+      "type": "ExpressionStatement",
+    },
+    ExpressionStatement {
+      "expression": CallExpression {
+        "arguments": Array [
+          Identifier {
+            "name": "CAN_PORT_1",
+            "type": "Identifier",
+          },
+          Identifier {
+            "name": "GLOBAL",
+            "type": "Identifier",
+          },
+          Identifier {
+            "name": "ENTER_OPERATIONAL",
+            "type": "Identifier",
+          },
+        ],
+        "callee": Identifier {
+          "name": "Send_NMT",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "leadingComments": Array [],
+      "trailingComments": Array [],
+      "type": "ExpressionStatement",
+    },
+    ReturnStatement {
+      "leadingComments": Array [],
+      "trailingComments": Array [
+        ";End Setup Mailboxes",
+      ],
+      "type": "ReturnStatement",
+    },
+    LabelStatement {
+      "label": Identifier {
+        "name": "Handle_TestMessage_098",
+        "type": "Identifier",
+      },
+      "leadingComments": Array [
+        ";======================================================================================",
+        ";      Subroutine Handle_TestMessage_098   DIRECT ACTIVATION of FRONT and REAR",
+        ";======================================================================================",
+      ],
+      "trailingComments": Array [],
+      "type": "LabelStatement",
+    },
+    IfStatement {
+      "alternate": BlockStatement {
+        "body": Array [
+          AssignmentStatement {
+            "leadingComments": Array [],
+            "left": Identifier {
+              "name": "Driver_12_Command",
+              "type": "Identifier",
+            },
+            "right": Identifier {
+              "name": "cPWM_Output",
+              "type": "Identifier",
+            },
+            "trailingComments": Array [],
+            "type": "AssignmentStatement",
+          },
+          AssignmentStatement {
+            "leadingComments": Array [],
+            "left": Identifier {
+              "name": "autouser286",
+              "type": "Identifier",
+            },
+            "right": BinaryExpression {
+              "left": Identifier {
+                "name": "autouser286",
+                "type": "Identifier",
+              },
+              "operator": "+",
+              "right": Literal {
+                "raw": "1",
+                "type": "Literal",
+                "value": 1,
+              },
+              "type": "BinaryExpression",
+            },
+            "trailingComments": Array [],
+            "type": "AssignmentStatement",
+          },
+        ],
+        "leadingComments": Array [],
+        "trailingComments": Array [],
+        "type": "BlockStatement",
+      },
+      "consequent": BlockStatement {
+        "body": Array [
+          AssignmentStatement {
+            "leadingComments": Array [],
+            "left": Identifier {
+              "name": "Driver_12_Command",
+              "type": "Identifier",
+            },
+            "right": Literal {
+              "raw": "0",
+              "type": "Literal",
+              "value": 0,
+            },
+            "trailingComments": Array [],
+            "type": "AssignmentStatement",
+          },
+        ],
+        "leadingComments": Array [],
+        "trailingComments": Array [],
+        "type": "BlockStatement",
+      },
+      "leadingComments": Array [],
+      "test": BinaryExpression {
+        "left": Identifier {
+          "name": "Activate_REAR",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": Literal {
+          "raw": "0",
+          "type": "Literal",
+          "value": 0,
+        },
+        "type": "BinaryExpression",
+      },
+      "trailingComments": Array [],
+      "type": "IfStatement",
+    },
+    IfStatement {
+      "alternate": BlockStatement {
+        "body": Array [
+          AssignmentStatement {
+            "leadingComments": Array [],
+            "left": Identifier {
+              "name": "Digital_Out_3_Command",
+              "type": "Identifier",
+            },
+            "right": Literal {
+              "raw": "1",
+              "type": "Literal",
+              "value": 1,
+            },
+            "trailingComments": Array [],
+            "type": "AssignmentStatement",
+          },
+        ],
+        "leadingComments": Array [],
+        "trailingComments": Array [],
+        "type": "BlockStatement",
+      },
+      "consequent": BlockStatement {
+        "body": Array [
+          AssignmentStatement {
+            "leadingComments": Array [],
+            "left": Identifier {
+              "name": "Digital_Out_3_Command",
+              "type": "Identifier",
+            },
+            "right": Literal {
+              "raw": "0",
+              "type": "Literal",
+              "value": 0,
+            },
+            "trailingComments": Array [],
+            "type": "AssignmentStatement",
+          },
+        ],
+        "leadingComments": Array [],
+        "trailingComments": Array [],
+        "type": "BlockStatement",
+      },
+      "leadingComments": Array [],
+      "test": BinaryExpression {
+        "left": Identifier {
+          "name": "Activate_FRONT",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": Literal {
+          "raw": "0",
+          "type": "Literal",
+          "value": 0,
+        },
+        "type": "BinaryExpression",
+      },
+      "trailingComments": Array [
+        ";",
+      ],
+      "type": "IfStatement",
+    },
+    IfStatement {
+      "alternate": BlockStatement {
+        "body": Array [
+          AssignmentStatement {
+            "leadingComments": Array [],
+            "left": Identifier {
+              "name": "Driver_3_Command",
+              "type": "Identifier",
+            },
+            "right": Identifier {
+              "name": "cPWM_Output",
+              "type": "Identifier",
+            },
+            "trailingComments": Array [],
+            "type": "AssignmentStatement",
+          },
+        ],
+        "leadingComments": Array [],
+        "trailingComments": Array [],
+        "type": "BlockStatement",
+      },
+      "consequent": BlockStatement {
+        "body": Array [
+          AssignmentStatement {
+            "leadingComments": Array [],
+            "left": Identifier {
+              "name": "Driver_3_Command",
+              "type": "Identifier",
+            },
+            "right": Literal {
+              "raw": "0",
+              "type": "Literal",
+              "value": 0,
+            },
+            "trailingComments": Array [],
+            "type": "AssignmentStatement",
+          },
+        ],
+        "leadingComments": Array [],
+        "trailingComments": Array [],
+        "type": "BlockStatement",
+      },
+      "leadingComments": Array [],
+      "test": BinaryExpression {
+        "left": Identifier {
+          "name": "Activate_PWM3",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": Literal {
+          "raw": "0",
+          "type": "Literal",
+          "value": 0,
+        },
+        "type": "BinaryExpression",
+      },
+      "trailingComments": Array [],
+      "type": "IfStatement",
+    },
+    IfStatement {
+      "alternate": BlockStatement {
+        "body": Array [
+          AssignmentStatement {
+            "leadingComments": Array [],
+            "left": Identifier {
+              "name": "Driver_4_Command",
+              "type": "Identifier",
+            },
+            "right": Identifier {
+              "name": "cPWM_Output",
+              "type": "Identifier",
+            },
+            "trailingComments": Array [],
+            "type": "AssignmentStatement",
+          },
+        ],
+        "leadingComments": Array [],
+        "trailingComments": Array [],
+        "type": "BlockStatement",
+      },
+      "consequent": BlockStatement {
+        "body": Array [
+          AssignmentStatement {
+            "leadingComments": Array [],
+            "left": Identifier {
+              "name": "Driver_4_Command",
+              "type": "Identifier",
+            },
+            "right": Literal {
+              "raw": "0",
+              "type": "Literal",
+              "value": 0,
+            },
+            "trailingComments": Array [],
+            "type": "AssignmentStatement",
+          },
+        ],
+        "leadingComments": Array [],
+        "trailingComments": Array [],
+        "type": "BlockStatement",
+      },
+      "leadingComments": Array [],
+      "test": BinaryExpression {
+        "left": Identifier {
+          "name": "Activate_PWM4",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": Literal {
+          "raw": "0",
+          "type": "Literal",
+          "value": 0,
+        },
+        "type": "BinaryExpression",
+      },
+      "trailingComments": Array [],
+      "type": "IfStatement",
+    },
+    IfStatement {
+      "alternate": BlockStatement {
+        "body": Array [
+          AssignmentStatement {
+            "leadingComments": Array [],
+            "left": Identifier {
+              "name": "Driver_2_Command",
+              "type": "Identifier",
+            },
+            "right": Identifier {
+              "name": "cPWM_Output",
+              "type": "Identifier",
+            },
+            "trailingComments": Array [],
+            "type": "AssignmentStatement",
+          },
+        ],
+        "leadingComments": Array [],
+        "trailingComments": Array [],
+        "type": "BlockStatement",
+      },
+      "consequent": BlockStatement {
+        "body": Array [
+          AssignmentStatement {
+            "leadingComments": Array [],
+            "left": Identifier {
+              "name": "Driver_2_Command",
+              "type": "Identifier",
+            },
+            "right": Literal {
+              "raw": "0",
+              "type": "Literal",
+              "value": 0,
+            },
+            "trailingComments": Array [],
+            "type": "AssignmentStatement",
+          },
+        ],
+        "leadingComments": Array [],
+        "trailingComments": Array [],
+        "type": "BlockStatement",
+      },
+      "leadingComments": Array [],
+      "test": BinaryExpression {
+        "left": Identifier {
+          "name": "Activate_PWM2_Switch",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": Literal {
+          "raw": "0",
+          "type": "Literal",
+          "value": 0,
+        },
+        "type": "BinaryExpression",
+      },
+      "trailingComments": Array [],
+      "type": "IfStatement",
+    },
+    IfStatement {
+      "alternate": BlockStatement {
+        "body": Array [
+          AssignmentStatement {
+            "leadingComments": Array [],
+            "left": Identifier {
+              "name": "Driver_5_Command",
+              "type": "Identifier",
+            },
+            "right": Identifier {
+              "name": "cPWM_Output",
+              "type": "Identifier",
+            },
+            "trailingComments": Array [],
+            "type": "AssignmentStatement",
+          },
+        ],
+        "leadingComments": Array [],
+        "trailingComments": Array [],
+        "type": "BlockStatement",
+      },
+      "consequent": BlockStatement {
+        "body": Array [
+          AssignmentStatement {
+            "leadingComments": Array [],
+            "left": Identifier {
+              "name": "Driver_5_Command",
+              "type": "Identifier",
+            },
+            "right": Literal {
+              "raw": "0",
+              "type": "Literal",
+              "value": 0,
+            },
+            "trailingComments": Array [],
+            "type": "AssignmentStatement",
+          },
+        ],
+        "leadingComments": Array [],
+        "trailingComments": Array [],
+        "type": "BlockStatement",
+      },
+      "leadingComments": Array [],
+      "test": BinaryExpression {
+        "left": Identifier {
+          "name": "Activate_PWM5",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": Literal {
+          "raw": "0",
+          "type": "Literal",
+          "value": 0,
+        },
+        "type": "BinaryExpression",
+      },
+      "trailingComments": Array [],
+      "type": "IfStatement",
+    },
+    ReturnStatement {
+      "leadingComments": Array [],
+      "trailingComments": Array [
+        ";======================================================================================",
+      ],
+      "type": "ReturnStatement",
+    },
+  ],
+  "type": "Program",
+}
+`;
