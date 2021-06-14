@@ -8,28 +8,39 @@ import {
   BitDeclaration,
   BlockStatement,
   CallExpression,
+  CallStatement,
   ConstantDeclaration,
+  EnterStatement,
   EqualsDeclaration,
+  ExitStatement,
   Expression,
   ExpressionStatement,
-  CallStatement,
+  GoToStatement,
   Identifier,
   IfStatement,
+  IncludeStatement,
   LabelStatement,
   Literal,
   LogicalExpression,
+  LogicalOperator, ModuleStatement,
+  Operator,
   Program,
   ReturnStatement,
+  Statement,
   UnaryExpression,
   VariableDeclaration,
   WhileStatement,
-  GoToStatement,
-  Operator,
-  Statement,
-  LogicalOperator,
-  IncludeStatement,
 } from './VCLAst';
 import { CstElementWithComments } from '../parser/types';
+
+const operatorPrecedenceGroups = [
+  '*/',
+  '+-',
+  '>><<',
+  '&|^',
+  '==<><=>=><',
+  '&&||',
+];
 
 const BaseVCLVisitor = new VCLParser().getBaseCstVisitorConstructor();
 
@@ -57,6 +68,7 @@ export default class VCLASTCreatorVisitor extends BaseVCLVisitor {
 
   statement(ctx: any) {
     const blockStatements =
+      this.visit(ctx.moduleStatement) ||
       this.visit(ctx.ifStatement) ||
       this.visit(ctx.whileStatement) ||
       this.visit(ctx.blockStatement);
@@ -77,7 +89,9 @@ export default class VCLASTCreatorVisitor extends BaseVCLVisitor {
       this.visit(ctx.assignStatement) ||
       this.visit(ctx.expressionStatement) ||
       this.visit(ctx.callStatement) ||
-      this.visit(ctx.includeStatement);
+      this.visit(ctx.includeStatement) ||
+      this.visit(ctx.enterStatement) ||
+      this.visit(ctx.exitStatement);
 
     return VCLASTCreatorVisitor.tryAttachComments(ctx, statement);
   }
@@ -92,10 +106,6 @@ export default class VCLASTCreatorVisitor extends BaseVCLVisitor {
   integerLiteral(ctx: any): Literal {
     const raw = ctx.Int ? ctx.Int[0].image : ctx.HexadecimalLiteral[0].image;
     return new Literal(raw, parseInt(raw));
-  }
-
-  expression(ctx: any): Expression {
-    return this.visit(ctx.binaryExpression);
   }
 
   expressionStatement(ctx: any): ExpressionStatement {
@@ -156,48 +166,64 @@ export default class VCLASTCreatorVisitor extends BaseVCLVisitor {
     return this.visit(ctx.primary);
   }
 
-  binaryExpression(ctx: any): BinaryExpression {
+  private static normalizeOperator(operator: IToken): string {
+    return operator.image
+      .toLowerCase()
+      .replace('and', '&&')
+      .replace('or', '||')
+      .replace('==', '=')
+      .replace(/([^<>=])=([^<>=])/, '$1==$2');
+  }
+
+  private static isLogicalOperator(operator: string) {
+    return ['&&', '||'].includes(operator);
+  }
+
+  binaryExpression(ctx: any): BinaryExpression | LogicalExpression {
     const recurseBinaryExpression = (
       terms: CstNode[],
-      operators: IToken[]
-    ): BinaryExpression => {
+      operators: string[]
+    ): BinaryExpression | LogicalExpression => {
       if (terms.length === 1) {
         return this.visit(terms);
       }
-      return new BinaryExpression(
-        (_.last(operators)!.image).replace('==','=') as Operator,
-        recurseBinaryExpression(
-          terms.slice(0, -1),
-          operators.slice(0, -1)
-        ),
-        this.visit(_.last(ctx.unaryExpression) as CstNode)
+
+      const operatorPrecedenceRanks = operators.map((op) =>
+        operatorPrecedenceGroups.findIndex((group) => group.includes(op))
       );
-    };
 
-    return recurseBinaryExpression(ctx.unaryExpression, ctx.operator || []);
-  }
+      const lowestRank = _.min(operatorPrecedenceRanks)!;
+      const rightmostLowestRank =
+        operatorPrecedenceRanks.lastIndexOf(lowestRank);
+      const splitPointOperator = operators[rightmostLowestRank];
+      const leftExpression = recurseBinaryExpression(
+        terms.slice(0, rightmostLowestRank + 1),
+        operators.slice(0, rightmostLowestRank)
+      );
 
-  logicalExpression(ctx: any): LogicalExpression {
-    const recurseLogicalExpression = (
-      terms: unknown[],
-      operators: IToken[]
-    ): LogicalExpression => {
-      if (terms.length === 1) {
-        return this.visit(ctx.parenthesisExpression);
+      const rightExpression = recurseBinaryExpression(
+        terms.slice(rightmostLowestRank + 1, terms.length),
+        operators.slice(rightmostLowestRank + 1, operators.length)
+      );
+
+      if (VCLASTCreatorVisitor.isLogicalOperator(splitPointOperator)) {
+        return new LogicalExpression(
+          splitPointOperator as LogicalOperator,
+          leftExpression,
+          rightExpression
+        );
       }
-      return new LogicalExpression(
-        _.last(operators)!.image.toLowerCase().replace('and','&&').replace('or','||') as LogicalOperator,
-        recurseLogicalExpression(
-          ctx.parenthesisExpression.slice(0, -1),
-          operators.slice(0, -1)
-        ),
-        this.visit(_.last(ctx.parenthesisExpression) as CstNode)
+
+      return new BinaryExpression(
+        splitPointOperator as Operator,
+        leftExpression,
+        rightExpression
       );
     };
 
-    return recurseLogicalExpression(
-      ctx.parenthesisExpression,
-      ctx.LogicalOperator || []
+    return recurseBinaryExpression(
+      ctx.unaryExpression,
+      (ctx.operator || []).map(VCLASTCreatorVisitor.normalizeOperator)
     );
   }
 
@@ -207,6 +233,18 @@ export default class VCLASTCreatorVisitor extends BaseVCLVisitor {
 
   returnStatement(ctx: any): ReturnStatement {
     return new ReturnStatement();
+  }
+
+  enterStatement(ctx: any): EnterStatement {
+    return new EnterStatement(identifier(ctx.label));
+  }
+
+  exitStatement(ctx: any): ExitStatement {
+    return new ExitStatement();
+  }
+
+  moduleStatement(ctx: any): ModuleStatement {
+    return new ModuleStatement(identifier(ctx.label), ctx.body ? _.compact(ctx.body.map((x: CstNode) => this.visit(x))) : []);
   }
 
   whileStatement(ctx: any): WhileStatement {

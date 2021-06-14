@@ -146,10 +146,25 @@ export const BitwiseOr = createToken({
   pattern: /\|/,
   categories: [Operator],
 });
+export const BitwiseXor = createToken({
+  name: 'BitwiseXor',
+  pattern: /\^/,
+  categories: [Operator],
+});
+export const Modulo = createToken({
+  name: 'Modulo',
+  pattern: /%/,
+  categories: [Operator],
+});
+export const BitwiseNot = createToken({
+  name: 'BitwiseNot',
+  pattern: /~/,
+  categories: [UnaryPrefixOperator],
+});
 export const Plus = createToken({
   name: 'Plus',
   pattern: /\+/,
-  categories: [Operator, UnaryPrefixOperator],
+  categories: [Operator],
 });
 export const Minus = createToken({
   name: 'Minus',

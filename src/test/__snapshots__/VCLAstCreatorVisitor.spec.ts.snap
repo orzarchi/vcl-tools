@@ -1497,596 +1497,299 @@ Program {
       "trailingComments": Array [],
       "type": "VariableDeclaration",
     },
-    ExpressionStatement {
-      "expression": Identifier {
-        "name": "Begin_Module",
-        "type": "Identifier",
-      },
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "ExpressionStatement",
-    },
-    ExpressionStatement {
-      "expression": Identifier {
-        "name": "FOS_Automate_PID",
-        "type": "Identifier",
-      },
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "ExpressionStatement",
-    },
-    EqualsDeclaration {
-      "id": Identifier {
-        "name": "PID_Dly",
-        "type": "Identifier",
-      },
-      "init": Identifier {
-        "name": "Dly32",
-        "type": "Identifier",
-      },
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "EqualsDeclaration",
-    },
-    EqualsDeclaration {
-      "id": Identifier {
-        "name": "PID_Dly_Output",
-        "type": "Identifier",
-      },
-      "init": Identifier {
-        "name": "Dly32_Output",
-        "type": "Identifier",
-      },
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "EqualsDeclaration",
-    },
-    VariableDeclaration {
-      "id": Identifier {
-        "name": "current_time",
-        "type": "Identifier",
-      },
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "VariableDeclaration",
-    },
-    VariableDeclaration {
-      "id": Identifier {
-        "name": "last_time",
-        "type": "Identifier",
-      },
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "VariableDeclaration",
-    },
-    VariableDeclaration {
-      "id": Identifier {
-        "name": "delta_time",
-        "type": "Identifier",
-      },
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "VariableDeclaration",
-    },
-    VariableDeclaration {
-      "id": Identifier {
-        "name": "delta_tics",
-        "type": "Identifier",
-      },
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "VariableDeclaration",
-    },
-    ConstantDeclaration {
-      "id": Identifier {
-        "name": "PID_DLY_RELOAD_THRESHOLD",
-        "type": "Identifier",
-      },
-      "init": Literal {
-        "raw": "1000",
-        "type": "Literal",
-        "value": 1000,
-      },
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "ConstantDeclaration",
-    },
-    ConstantDeclaration {
-      "id": Identifier {
-        "name": "PID_DLY_RELOAD_VALUE",
-        "type": "Identifier",
-      },
-      "init": Literal {
-        "raw": "11000",
-        "type": "Literal",
-        "value": 11000,
-      },
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "ConstantDeclaration",
-    },
-    ConstantDeclaration {
-      "id": Identifier {
-        "name": "PID_TIC_TIME",
-        "type": "Identifier",
-      },
-      "init": Literal {
-        "raw": "4",
-        "type": "Literal",
-        "value": 4,
-      },
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "ConstantDeclaration",
-    },
-    VariableDeclaration {
-      "id": Identifier {
-        "name": "pid_integral",
-        "type": "Identifier",
-      },
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "VariableDeclaration",
-    },
-    VariableDeclaration {
-      "id": Identifier {
-        "name": "pid_error",
-        "type": "Identifier",
-      },
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "VariableDeclaration",
-    },
-    VariableDeclaration {
-      "id": Identifier {
-        "name": "pid_error_back_1",
-        "type": "Identifier",
-      },
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "VariableDeclaration",
-    },
-    VariableDeclaration {
-      "id": Identifier {
-        "name": "pid_error_back_2",
-        "type": "Identifier",
-      },
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "VariableDeclaration",
-    },
-    VariableDeclaration {
-      "id": Identifier {
-        "name": "pid_clamp",
-        "type": "Identifier",
-      },
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "VariableDeclaration",
-    },
-    VariableDeclaration {
-      "id": Identifier {
-        "name": "pid_result",
-        "type": "Identifier",
-      },
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "VariableDeclaration",
-    },
-    CallStatement {
-      "label": Identifier {
-        "name": "Calculate_Delta_Tic",
-        "type": "Identifier",
-      },
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "CallStatement",
-    },
-    IfStatement {
-      "alternate": undefined,
-      "consequent": BlockStatement {
-        "body": Array [
-          CallStatement {
-            "label": Identifier {
-              "name": "Run_PID_Calcs",
-              "type": "Identifier",
-            },
-            "leadingComments": Array [],
-            "trailingComments": Array [],
-            "type": "CallStatement",
+    ModuleStatement {
+      "body": Array [
+        EqualsDeclaration {
+          "id": Identifier {
+            "name": "PID_Dly",
+            "type": "Identifier",
           },
-        ],
-        "leadingComments": Array [],
-        "trailingComments": Array [],
-        "type": "BlockStatement",
-      },
-      "leadingComments": Array [],
-      "test": BinaryExpression {
-        "left": Identifier {
-          "name": "delta_tics",
-          "type": "Identifier",
+          "init": Identifier {
+            "name": "Dly32",
+            "type": "Identifier",
+          },
+          "leadingComments": Array [],
+          "trailingComments": Array [],
+          "type": "EqualsDeclaration",
         },
-        "operator": ">",
-        "right": Literal {
-          "raw": "0",
-          "type": "Literal",
-          "value": 0,
+        EqualsDeclaration {
+          "id": Identifier {
+            "name": "PID_Dly_Output",
+            "type": "Identifier",
+          },
+          "init": Identifier {
+            "name": "Dly32_Output",
+            "type": "Identifier",
+          },
+          "leadingComments": Array [],
+          "trailingComments": Array [],
+          "type": "EqualsDeclaration",
         },
-        "type": "BinaryExpression",
-      },
-      "trailingComments": Array [],
-      "type": "IfStatement",
-    },
-    ExpressionStatement {
-      "expression": Identifier {
-        "name": "Exit",
-        "type": "Identifier",
-      },
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "ExpressionStatement",
-    },
-    LabelStatement {
-      "label": Identifier {
-        "name": "Calculate_Delta_Tic",
-        "type": "Identifier",
-      },
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "LabelStatement",
-    },
-    AssignmentStatement {
-      "leadingComments": Array [],
-      "left": Identifier {
-        "name": "current_time",
-        "type": "Identifier",
-      },
-      "right": Identifier {
-        "name": "PID_Dly_Output",
-        "type": "Identifier",
-      },
-      "trailingComments": Array [],
-      "type": "AssignmentStatement",
-    },
-    AssignmentStatement {
-      "leadingComments": Array [],
-      "left": Identifier {
-        "name": "delta_time",
-        "type": "Identifier",
-      },
-      "right": BinaryExpression {
-        "left": Identifier {
-          "name": "last_time",
-          "type": "Identifier",
+        VariableDeclaration {
+          "id": Identifier {
+            "name": "current_time",
+            "type": "Identifier",
+          },
+          "leadingComments": Array [],
+          "trailingComments": Array [],
+          "type": "VariableDeclaration",
         },
-        "operator": "-",
-        "right": Identifier {
-          "name": "current_time",
-          "type": "Identifier",
+        VariableDeclaration {
+          "id": Identifier {
+            "name": "last_time",
+            "type": "Identifier",
+          },
+          "leadingComments": Array [],
+          "trailingComments": Array [],
+          "type": "VariableDeclaration",
         },
-        "type": "BinaryExpression",
-      },
-      "trailingComments": Array [],
-      "type": "AssignmentStatement",
-    },
-    AssignmentStatement {
-      "leadingComments": Array [],
-      "left": Identifier {
-        "name": "delta_tics",
-        "type": "Identifier",
-      },
-      "right": BinaryExpression {
-        "left": Identifier {
-          "name": "delta_time",
-          "type": "Identifier",
+        VariableDeclaration {
+          "id": Identifier {
+            "name": "delta_time",
+            "type": "Identifier",
+          },
+          "leadingComments": Array [],
+          "trailingComments": Array [],
+          "type": "VariableDeclaration",
         },
-        "operator": "/",
-        "right": Identifier {
-          "name": "PID_TIC_TIME",
-          "type": "Identifier",
-        },
-        "type": "BinaryExpression",
-      },
-      "trailingComments": Array [],
-      "type": "AssignmentStatement",
-    },
-    AssignmentStatement {
-      "leadingComments": Array [],
-      "left": Identifier {
-        "name": "last_time",
-        "type": "Identifier",
-      },
-      "right": BinaryExpression {
-        "left": Identifier {
-          "name": "last_time",
-          "type": "Identifier",
-        },
-        "operator": "-",
-        "right": BinaryExpression {
-          "left": Identifier {
+        VariableDeclaration {
+          "id": Identifier {
             "name": "delta_tics",
             "type": "Identifier",
           },
-          "operator": "*",
-          "right": Identifier {
+          "leadingComments": Array [],
+          "trailingComments": Array [],
+          "type": "VariableDeclaration",
+        },
+        ConstantDeclaration {
+          "id": Identifier {
+            "name": "PID_DLY_RELOAD_THRESHOLD",
+            "type": "Identifier",
+          },
+          "init": Literal {
+            "raw": "1000",
+            "type": "Literal",
+            "value": 1000,
+          },
+          "leadingComments": Array [],
+          "trailingComments": Array [],
+          "type": "ConstantDeclaration",
+        },
+        ConstantDeclaration {
+          "id": Identifier {
+            "name": "PID_DLY_RELOAD_VALUE",
+            "type": "Identifier",
+          },
+          "init": Literal {
+            "raw": "11000",
+            "type": "Literal",
+            "value": 11000,
+          },
+          "leadingComments": Array [],
+          "trailingComments": Array [],
+          "type": "ConstantDeclaration",
+        },
+        ConstantDeclaration {
+          "id": Identifier {
             "name": "PID_TIC_TIME",
             "type": "Identifier",
           },
-          "type": "BinaryExpression",
+          "init": Literal {
+            "raw": "4",
+            "type": "Literal",
+            "value": 4,
+          },
+          "leadingComments": Array [],
+          "trailingComments": Array [],
+          "type": "ConstantDeclaration",
         },
-        "type": "BinaryExpression",
-      },
-      "trailingComments": Array [],
-      "type": "AssignmentStatement",
-    },
-    IfStatement {
-      "alternate": undefined,
-      "consequent": BlockStatement {
-        "body": Array [
-          ExpressionStatement {
-            "expression": CallExpression {
-              "arguments": Array [
-                Identifier {
-                  "name": "PID_Dly",
+        VariableDeclaration {
+          "id": Identifier {
+            "name": "pid_integral",
+            "type": "Identifier",
+          },
+          "leadingComments": Array [],
+          "trailingComments": Array [],
+          "type": "VariableDeclaration",
+        },
+        VariableDeclaration {
+          "id": Identifier {
+            "name": "pid_error",
+            "type": "Identifier",
+          },
+          "leadingComments": Array [],
+          "trailingComments": Array [],
+          "type": "VariableDeclaration",
+        },
+        VariableDeclaration {
+          "id": Identifier {
+            "name": "pid_error_back_1",
+            "type": "Identifier",
+          },
+          "leadingComments": Array [],
+          "trailingComments": Array [],
+          "type": "VariableDeclaration",
+        },
+        VariableDeclaration {
+          "id": Identifier {
+            "name": "pid_error_back_2",
+            "type": "Identifier",
+          },
+          "leadingComments": Array [],
+          "trailingComments": Array [],
+          "type": "VariableDeclaration",
+        },
+        VariableDeclaration {
+          "id": Identifier {
+            "name": "pid_clamp",
+            "type": "Identifier",
+          },
+          "leadingComments": Array [],
+          "trailingComments": Array [],
+          "type": "VariableDeclaration",
+        },
+        VariableDeclaration {
+          "id": Identifier {
+            "name": "pid_result",
+            "type": "Identifier",
+          },
+          "leadingComments": Array [],
+          "trailingComments": Array [],
+          "type": "VariableDeclaration",
+        },
+        CallStatement {
+          "label": Identifier {
+            "name": "Calculate_Delta_Tic",
+            "type": "Identifier",
+          },
+          "leadingComments": Array [],
+          "trailingComments": Array [],
+          "type": "CallStatement",
+        },
+        IfStatement {
+          "alternate": undefined,
+          "consequent": BlockStatement {
+            "body": Array [
+              CallStatement {
+                "label": Identifier {
+                  "name": "Run_PID_Calcs",
                   "type": "Identifier",
                 },
-                Identifier {
-                  "name": "PID_DLY_RELOAD_VALUE",
-                  "type": "Identifier",
-                },
-              ],
-              "callee": Identifier {
-                "name": "Setup_Delay",
-                "type": "Identifier",
+                "leadingComments": Array [],
+                "trailingComments": Array [],
+                "type": "CallStatement",
               },
-              "type": "CallExpression",
-            },
+            ],
             "leadingComments": Array [],
             "trailingComments": Array [],
-            "type": "ExpressionStatement",
+            "type": "BlockStatement",
           },
-          AssignmentStatement {
-            "leadingComments": Array [],
+          "leadingComments": Array [],
+          "test": BinaryExpression {
             "left": Identifier {
-              "name": "current_time",
+              "name": "delta_tics",
               "type": "Identifier",
             },
-            "right": Identifier {
-              "name": "PID_DLY_RELOAD_VALUE",
-              "type": "Identifier",
+            "operator": ">",
+            "right": Literal {
+              "raw": "0",
+              "type": "Literal",
+              "value": 0,
             },
-            "trailingComments": Array [],
-            "type": "AssignmentStatement",
+            "type": "BinaryExpression",
           },
-          AssignmentStatement {
-            "leadingComments": Array [],
-            "left": Identifier {
-              "name": "last_time",
-              "type": "Identifier",
-            },
-            "right": Identifier {
-              "name": "PID_DLY_RELOAD_VALUE",
-              "type": "Identifier",
-            },
-            "trailingComments": Array [],
-            "type": "AssignmentStatement",
-          },
-        ],
-        "leadingComments": Array [],
-        "trailingComments": Array [],
-        "type": "BlockStatement",
-      },
-      "leadingComments": Array [],
-      "test": BinaryExpression {
-        "left": Identifier {
-          "name": "current_time",
-          "type": "Identifier",
+          "trailingComments": Array [],
+          "type": "IfStatement",
         },
-        "operator": "<=",
-        "right": Identifier {
-          "name": "PID_DLY_RELOAD_THRESHOLD",
-          "type": "Identifier",
+        ExitStatement {
+          "leadingComments": Array [],
+          "trailingComments": Array [],
+          "type": "ExitStatement",
         },
-        "type": "BinaryExpression",
-      },
-      "trailingComments": Array [],
-      "type": "IfStatement",
-    },
-    ReturnStatement {
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "ReturnStatement",
-    },
-    LabelStatement {
-      "label": Identifier {
-        "name": "Run_PID_Calcs",
-        "type": "Identifier",
-      },
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "LabelStatement",
-    },
-    AssignmentStatement {
-      "leadingComments": Array [],
-      "left": Identifier {
-        "name": "pid_error_back_2",
-        "type": "Identifier",
-      },
-      "right": Identifier {
-        "name": "pid_error_back_1",
-        "type": "Identifier",
-      },
-      "trailingComments": Array [
-        ";",
-      ],
-      "type": "AssignmentStatement",
-    },
-    AssignmentStatement {
-      "leadingComments": Array [],
-      "left": Identifier {
-        "name": "pid_error_back_1",
-        "type": "Identifier",
-      },
-      "right": Identifier {
-        "name": "pid_error",
-        "type": "Identifier",
-      },
-      "trailingComments": Array [
-        ";",
-      ],
-      "type": "AssignmentStatement",
-    },
-    AssignmentStatement {
-      "leadingComments": Array [],
-      "left": Identifier {
-        "name": "pid_error",
-        "type": "Identifier",
-      },
-      "right": BinaryExpression {
-        "left": Identifier {
-          "name": "PID_Setpoint",
-          "type": "Identifier",
-        },
-        "operator": "-",
-        "right": Identifier {
-          "name": "PID_Feedback",
-          "type": "Identifier",
-        },
-        "type": "BinaryExpression",
-      },
-      "trailingComments": Array [],
-      "type": "AssignmentStatement",
-    },
-    IfStatement {
-      "alternate": undefined,
-      "consequent": undefined,
-      "leadingComments": Array [],
-      "test": BinaryExpression {
-        "left": Identifier {
-          "name": "pid_clamp",
-          "type": "Identifier",
-        },
-        "operator": "=",
-        "right": undefined,
-        "type": "BinaryExpression",
-      },
-      "trailingComments": Array [],
-      "type": "IfStatement",
-    },
-    ExpressionStatement {
-      "expression": Literal {
-        "raw": "0",
-        "type": "Literal",
-        "value": 0,
-      },
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "ExpressionStatement",
-    },
-    ExpressionStatement {
-      "expression": BinaryExpression {
-        "left": BinaryExpression {
-          "left": Identifier {
-            "name": "pid_error",
+        LabelStatement {
+          "label": Identifier {
+            "name": "Calculate_Delta_Tic",
             "type": "Identifier",
           },
-          "operator": "<",
-          "right": Literal {
-            "raw": "0",
-            "type": "Literal",
-            "value": 0,
-          },
-          "type": "BinaryExpression",
+          "leadingComments": Array [],
+          "trailingComments": Array [],
+          "type": "LabelStatement",
         },
-        "operator": "&",
-        "right": undefined,
-        "type": "BinaryExpression",
-      },
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "ExpressionStatement",
-    },
-    ExpressionStatement {
-      "expression": BinaryExpression {
-        "left": Identifier {
-          "name": "pid_integral",
-          "type": "Identifier",
-        },
-        "operator": ">",
-        "right": Literal {
-          "raw": "0",
-          "type": "Literal",
-          "value": 0,
-        },
-        "type": "BinaryExpression",
-      },
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "ExpressionStatement",
-    },
-    ExpressionStatement {
-      "expression": BinaryExpression {
-        "left": BinaryExpression {
-          "left": Identifier {
-            "name": "pid_error",
-            "type": "Identifier",
-          },
-          "operator": ">",
-          "right": Literal {
-            "raw": "0",
-            "type": "Literal",
-            "value": 0,
-          },
-          "type": "BinaryExpression",
-        },
-        "operator": "&",
-        "right": undefined,
-        "type": "BinaryExpression",
-      },
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "ExpressionStatement",
-    },
-    ExpressionStatement {
-      "expression": BinaryExpression {
-        "left": Identifier {
-          "name": "pid_integral",
-          "type": "Identifier",
-        },
-        "operator": "<",
-        "right": Literal {
-          "raw": "0",
-          "type": "Literal",
-          "value": 0,
-        },
-        "type": "BinaryExpression",
-      },
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "ExpressionStatement",
-    },
-    BlockStatement {
-      "body": Array [
         AssignmentStatement {
           "leadingComments": Array [],
           "left": Identifier {
-            "name": "pid_integral",
+            "name": "current_time",
+            "type": "Identifier",
+          },
+          "right": Identifier {
+            "name": "PID_Dly_Output",
+            "type": "Identifier",
+          },
+          "trailingComments": Array [],
+          "type": "AssignmentStatement",
+        },
+        AssignmentStatement {
+          "leadingComments": Array [],
+          "left": Identifier {
+            "name": "delta_time",
             "type": "Identifier",
           },
           "right": BinaryExpression {
             "left": Identifier {
-              "name": "pid_integral",
+              "name": "last_time",
               "type": "Identifier",
             },
-            "operator": "+",
+            "operator": "-",
+            "right": Identifier {
+              "name": "current_time",
+              "type": "Identifier",
+            },
+            "type": "BinaryExpression",
+          },
+          "trailingComments": Array [],
+          "type": "AssignmentStatement",
+        },
+        AssignmentStatement {
+          "leadingComments": Array [],
+          "left": Identifier {
+            "name": "delta_tics",
+            "type": "Identifier",
+          },
+          "right": BinaryExpression {
+            "left": Identifier {
+              "name": "delta_time",
+              "type": "Identifier",
+            },
+            "operator": "/",
+            "right": Identifier {
+              "name": "PID_TIC_TIME",
+              "type": "Identifier",
+            },
+            "type": "BinaryExpression",
+          },
+          "trailingComments": Array [],
+          "type": "AssignmentStatement",
+        },
+        AssignmentStatement {
+          "leadingComments": Array [],
+          "left": Identifier {
+            "name": "last_time",
+            "type": "Identifier",
+          },
+          "right": BinaryExpression {
+            "left": Identifier {
+              "name": "last_time",
+              "type": "Identifier",
+            },
+            "operator": "-",
             "right": BinaryExpression {
               "left": Identifier {
-                "name": "pid_error",
+                "name": "delta_tics",
                 "type": "Identifier",
               },
               "operator": "*",
               "right": Identifier {
-                "name": "delta_tics",
+                "name": "PID_TIC_TIME",
                 "type": "Identifier",
               },
               "type": "BinaryExpression",
@@ -2096,60 +1799,347 @@ Program {
           "trailingComments": Array [],
           "type": "AssignmentStatement",
         },
-      ],
-      "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "BlockStatement",
-    },
-    AssignmentStatement {
-      "leadingComments": Array [],
-      "left": Identifier {
-        "name": "pid_result",
-        "type": "Identifier",
-      },
-      "right": BinaryExpression {
-        "left": BinaryExpression {
-          "left": BinaryExpression {
-            "left": BinaryExpression {
-              "left": Identifier {
-                "name": "PID_Kp",
-                "type": "Identifier",
+        IfStatement {
+          "alternate": undefined,
+          "consequent": BlockStatement {
+            "body": Array [
+              ExpressionStatement {
+                "expression": CallExpression {
+                  "arguments": Array [
+                    Identifier {
+                      "name": "PID_Dly",
+                      "type": "Identifier",
+                    },
+                    Identifier {
+                      "name": "PID_DLY_RELOAD_VALUE",
+                      "type": "Identifier",
+                    },
+                  ],
+                  "callee": Identifier {
+                    "name": "Setup_Delay",
+                    "type": "Identifier",
+                  },
+                  "type": "CallExpression",
+                },
+                "leadingComments": Array [],
+                "trailingComments": Array [],
+                "type": "ExpressionStatement",
               },
-              "operator": "*",
-              "right": Identifier {
-                "name": "pid_error",
-                "type": "Identifier",
+              AssignmentStatement {
+                "leadingComments": Array [],
+                "left": Identifier {
+                  "name": "current_time",
+                  "type": "Identifier",
+                },
+                "right": Identifier {
+                  "name": "PID_DLY_RELOAD_VALUE",
+                  "type": "Identifier",
+                },
+                "trailingComments": Array [],
+                "type": "AssignmentStatement",
               },
-              "type": "BinaryExpression",
+              AssignmentStatement {
+                "leadingComments": Array [],
+                "left": Identifier {
+                  "name": "last_time",
+                  "type": "Identifier",
+                },
+                "right": Identifier {
+                  "name": "PID_DLY_RELOAD_VALUE",
+                  "type": "Identifier",
+                },
+                "trailingComments": Array [],
+                "type": "AssignmentStatement",
+              },
+            ],
+            "leadingComments": Array [],
+            "trailingComments": Array [],
+            "type": "BlockStatement",
+          },
+          "leadingComments": Array [],
+          "test": BinaryExpression {
+            "left": Identifier {
+              "name": "current_time",
+              "type": "Identifier",
             },
-            "operator": "/",
-            "right": Literal {
-              "raw": "0x1FFF",
-              "type": "Literal",
-              "value": 8191,
+            "operator": "<=",
+            "right": Identifier {
+              "name": "PID_DLY_RELOAD_THRESHOLD",
+              "type": "Identifier",
             },
             "type": "BinaryExpression",
           },
-          "operator": "+",
+          "trailingComments": Array [],
+          "type": "IfStatement",
+        },
+        ReturnStatement {
+          "leadingComments": Array [],
+          "trailingComments": Array [],
+          "type": "ReturnStatement",
+        },
+        LabelStatement {
+          "label": Identifier {
+            "name": "Run_PID_Calcs",
+            "type": "Identifier",
+          },
+          "leadingComments": Array [],
+          "trailingComments": Array [],
+          "type": "LabelStatement",
+        },
+        AssignmentStatement {
+          "leadingComments": Array [],
+          "left": Identifier {
+            "name": "pid_error_back_2",
+            "type": "Identifier",
+          },
+          "right": Identifier {
+            "name": "pid_error_back_1",
+            "type": "Identifier",
+          },
+          "trailingComments": Array [
+            ";",
+          ],
+          "type": "AssignmentStatement",
+        },
+        AssignmentStatement {
+          "leadingComments": Array [],
+          "left": Identifier {
+            "name": "pid_error_back_1",
+            "type": "Identifier",
+          },
+          "right": Identifier {
+            "name": "pid_error",
+            "type": "Identifier",
+          },
+          "trailingComments": Array [
+            ";",
+          ],
+          "type": "AssignmentStatement",
+        },
+        AssignmentStatement {
+          "leadingComments": Array [],
+          "left": Identifier {
+            "name": "pid_error",
+            "type": "Identifier",
+          },
           "right": BinaryExpression {
-            "left": BinaryExpression {
-              "left": BinaryExpression {
+            "left": Identifier {
+              "name": "PID_Setpoint",
+              "type": "Identifier",
+            },
+            "operator": "-",
+            "right": Identifier {
+              "name": "PID_Feedback",
+              "type": "Identifier",
+            },
+            "type": "BinaryExpression",
+          },
+          "trailingComments": Array [],
+          "type": "AssignmentStatement",
+        },
+        IfStatement {
+          "alternate": undefined,
+          "consequent": BlockStatement {
+            "body": Array [
+              AssignmentStatement {
+                "leadingComments": Array [],
                 "left": Identifier {
-                  "name": "PID_Kd",
+                  "name": "pid_integral",
                   "type": "Identifier",
                 },
-                "operator": "*",
                 "right": BinaryExpression {
+                  "left": Identifier {
+                    "name": "pid_integral",
+                    "type": "Identifier",
+                  },
+                  "operator": "+",
+                  "right": BinaryExpression {
+                    "left": Identifier {
+                      "name": "pid_error",
+                      "type": "Identifier",
+                    },
+                    "operator": "*",
+                    "right": Identifier {
+                      "name": "delta_tics",
+                      "type": "Identifier",
+                    },
+                    "type": "BinaryExpression",
+                  },
+                  "type": "BinaryExpression",
+                },
+                "trailingComments": Array [],
+                "type": "AssignmentStatement",
+              },
+            ],
+            "leadingComments": Array [],
+            "trailingComments": Array [],
+            "type": "BlockStatement",
+          },
+          "leadingComments": Array [],
+          "test": LogicalExpression {
+            "left": BinaryExpression {
+              "left": Identifier {
+                "name": "pid_clamp",
+                "type": "Identifier",
+              },
+              "operator": "=",
+              "right": Literal {
+                "raw": "0",
+                "type": "Literal",
+                "value": 0,
+              },
+              "type": "BinaryExpression",
+            },
+            "operator": "||",
+            "right": LogicalExpression {
+              "left": LogicalExpression {
+                "left": BinaryExpression {
                   "left": Identifier {
                     "name": "pid_error",
                     "type": "Identifier",
                   },
-                  "operator": "-",
+                  "operator": "<",
+                  "right": Literal {
+                    "raw": "0",
+                    "type": "Literal",
+                    "value": 0,
+                  },
+                  "type": "BinaryExpression",
+                },
+                "operator": "&&",
+                "right": BinaryExpression {
+                  "left": Identifier {
+                    "name": "pid_integral",
+                    "type": "Identifier",
+                  },
+                  "operator": ">",
+                  "right": Literal {
+                    "raw": "0",
+                    "type": "Literal",
+                    "value": 0,
+                  },
+                  "type": "BinaryExpression",
+                },
+                "type": "LogicalExpression",
+              },
+              "operator": "||",
+              "right": LogicalExpression {
+                "left": BinaryExpression {
+                  "left": Identifier {
+                    "name": "pid_error",
+                    "type": "Identifier",
+                  },
+                  "operator": ">",
+                  "right": Literal {
+                    "raw": "0",
+                    "type": "Literal",
+                    "value": 0,
+                  },
+                  "type": "BinaryExpression",
+                },
+                "operator": "&&",
+                "right": BinaryExpression {
+                  "left": Identifier {
+                    "name": "pid_integral",
+                    "type": "Identifier",
+                  },
+                  "operator": "<",
+                  "right": Literal {
+                    "raw": "0",
+                    "type": "Literal",
+                    "value": 0,
+                  },
+                  "type": "BinaryExpression",
+                },
+                "type": "LogicalExpression",
+              },
+              "type": "LogicalExpression",
+            },
+            "type": "LogicalExpression",
+          },
+          "trailingComments": Array [],
+          "type": "IfStatement",
+        },
+        AssignmentStatement {
+          "leadingComments": Array [],
+          "left": Identifier {
+            "name": "pid_result",
+            "type": "Identifier",
+          },
+          "right": BinaryExpression {
+            "left": BinaryExpression {
+              "left": BinaryExpression {
+                "left": BinaryExpression {
+                  "left": Identifier {
+                    "name": "PID_Kp",
+                    "type": "Identifier",
+                  },
+                  "operator": "*",
                   "right": Identifier {
-                    "name": "pid_error_back_1",
+                    "name": "pid_error",
                     "type": "Identifier",
                   },
                   "type": "BinaryExpression",
+                },
+                "operator": "/",
+                "right": Literal {
+                  "raw": "0x1FFF",
+                  "type": "Literal",
+                  "value": 8191,
+                },
+                "type": "BinaryExpression",
+              },
+              "operator": "+",
+              "right": BinaryExpression {
+                "left": BinaryExpression {
+                  "left": Identifier {
+                    "name": "PID_Ki",
+                    "type": "Identifier",
+                  },
+                  "operator": "*",
+                  "right": Identifier {
+                    "name": "pid_integral",
+                    "type": "Identifier",
+                  },
+                  "type": "BinaryExpression",
+                },
+                "operator": "/",
+                "right": Literal {
+                  "raw": "0x1FFF",
+                  "type": "Literal",
+                  "value": 8191,
+                },
+                "type": "BinaryExpression",
+              },
+              "type": "BinaryExpression",
+            },
+            "operator": "+",
+            "right": BinaryExpression {
+              "left": BinaryExpression {
+                "left": BinaryExpression {
+                  "left": Identifier {
+                    "name": "PID_Kd",
+                    "type": "Identifier",
+                  },
+                  "operator": "*",
+                  "right": BinaryExpression {
+                    "left": Identifier {
+                      "name": "pid_error",
+                      "type": "Identifier",
+                    },
+                    "operator": "-",
+                    "right": Identifier {
+                      "name": "pid_error_back_1",
+                      "type": "Identifier",
+                    },
+                    "type": "BinaryExpression",
+                  },
+                  "type": "BinaryExpression",
+                },
+                "operator": "/",
+                "right": Identifier {
+                  "name": "delta_tics",
+                  "type": "Identifier",
                 },
                 "type": "BinaryExpression",
               },
@@ -2161,109 +2151,86 @@ Program {
               },
               "type": "BinaryExpression",
             },
-            "operator": "/",
-            "right": Literal {
-              "raw": "0x1FFF",
-              "type": "Literal",
-              "value": 8191,
-            },
             "type": "BinaryExpression",
           },
-          "type": "BinaryExpression",
-        },
-        "operator": "+",
-        "right": BinaryExpression {
-          "left": BinaryExpression {
-            "left": BinaryExpression {
-              "left": Identifier {
-                "name": "PID_Kd",
-                "type": "Identifier",
-              },
-              "operator": "*",
-              "right": BinaryExpression {
-                "left": Identifier {
-                  "name": "pid_error",
-                  "type": "Identifier",
-                },
-                "operator": "-",
-                "right": Identifier {
-                  "name": "pid_error_back_1",
-                  "type": "Identifier",
-                },
-                "type": "BinaryExpression",
-              },
-              "type": "BinaryExpression",
-            },
-            "operator": "/",
-            "right": Literal {
-              "raw": "0x1FFF",
-              "type": "Literal",
-              "value": 8191,
-            },
-            "type": "BinaryExpression",
-          },
-          "operator": "/",
-          "right": Literal {
-            "raw": "0x1FFF",
-            "type": "Literal",
-            "value": 8191,
-          },
-          "type": "BinaryExpression",
-        },
-        "type": "BinaryExpression",
-      },
-      "trailingComments": Array [],
-      "type": "AssignmentStatement",
-    },
-    IfStatement {
-      "alternate": IfStatement {
-        "alternate": BlockStatement {
-          "body": Array [
-            AssignmentStatement {
-              "leadingComments": Array [],
-              "left": Identifier {
-                "name": "pid_clamp",
-                "type": "Identifier",
-              },
-              "right": Literal {
-                "raw": "0",
-                "type": "Literal",
-                "value": 0,
-              },
-              "trailingComments": Array [
-                ";",
-              ],
-              "type": "AssignmentStatement",
-            },
-          ],
-          "leadingComments": Array [],
           "trailingComments": Array [],
-          "type": "BlockStatement",
+          "type": "AssignmentStatement",
         },
-        "consequent": BlockStatement {
-          "body": Array [
-            AssignmentStatement {
-              "leadingComments": Array [],
-              "left": Identifier {
-                "name": "pid_clamp",
-                "type": "Identifier",
-              },
-              "right": Literal {
-                "raw": "1",
-                "type": "Literal",
-                "value": 1,
-              },
-              "trailingComments": Array [
-                ";",
+        IfStatement {
+          "alternate": IfStatement {
+            "alternate": BlockStatement {
+              "body": Array [
+                AssignmentStatement {
+                  "leadingComments": Array [],
+                  "left": Identifier {
+                    "name": "pid_clamp",
+                    "type": "Identifier",
+                  },
+                  "right": Literal {
+                    "raw": "0",
+                    "type": "Literal",
+                    "value": 0,
+                  },
+                  "trailingComments": Array [
+                    ";",
+                  ],
+                  "type": "AssignmentStatement",
+                },
               ],
-              "type": "AssignmentStatement",
-            },
-            AssignmentStatement {
               "leadingComments": Array [],
+              "trailingComments": Array [],
+              "type": "BlockStatement",
+            },
+            "consequent": BlockStatement {
+              "body": Array [
+                AssignmentStatement {
+                  "leadingComments": Array [],
+                  "left": Identifier {
+                    "name": "pid_clamp",
+                    "type": "Identifier",
+                  },
+                  "right": Literal {
+                    "raw": "1",
+                    "type": "Literal",
+                    "value": 1,
+                  },
+                  "trailingComments": Array [
+                    ";",
+                  ],
+                  "type": "AssignmentStatement",
+                },
+                AssignmentStatement {
+                  "leadingComments": Array [],
+                  "left": Identifier {
+                    "name": "pid_result",
+                    "type": "Identifier",
+                  },
+                  "right": UnaryExpression {
+                    "argument": Literal {
+                      "raw": "32767",
+                      "type": "Literal",
+                      "value": 32767,
+                    },
+                    "operator": "-",
+                    "type": "UnaryExpression",
+                  },
+                  "trailingComments": Array [
+                    ";",
+                  ],
+                  "type": "AssignmentStatement",
+                },
+              ],
+              "leadingComments": Array [],
+              "trailingComments": Array [],
+              "type": "BlockStatement",
+            },
+            "leadingComments": Array [],
+            "test": BinaryExpression {
               "left": Identifier {
                 "name": "pid_result",
                 "type": "Identifier",
               },
+              "operator": "<",
               "right": UnaryExpression {
                 "argument": Literal {
                   "raw": "32767",
@@ -2273,121 +2240,95 @@ Program {
                 "operator": "-",
                 "type": "UnaryExpression",
               },
-              "trailingComments": Array [
-                ";",
-              ],
-              "type": "AssignmentStatement",
+              "type": "BinaryExpression",
             },
-          ],
-          "leadingComments": Array [],
-          "trailingComments": Array [],
-          "type": "BlockStatement",
-        },
-        "leadingComments": Array [],
-        "test": BinaryExpression {
-          "left": Identifier {
-            "name": "pid_result",
-            "type": "Identifier",
+            "trailingComments": Array [],
+            "type": "IfStatement",
           },
-          "operator": "<",
-          "right": UnaryExpression {
-            "argument": Literal {
-              "raw": "32767",
-              "type": "Literal",
-              "value": 32767,
-            },
-            "operator": "-",
-            "type": "UnaryExpression",
-          },
-          "type": "BinaryExpression",
-        },
-        "trailingComments": Array [],
-        "type": "IfStatement",
-      },
-      "consequent": BlockStatement {
-        "body": Array [
-          AssignmentStatement {
-            "leadingComments": Array [],
-            "left": Identifier {
-              "name": "pid_clamp",
-              "type": "Identifier",
-            },
-            "right": Literal {
-              "raw": "1",
-              "type": "Literal",
-              "value": 1,
-            },
-            "trailingComments": Array [
-              ";",
+          "consequent": BlockStatement {
+            "body": Array [
+              AssignmentStatement {
+                "leadingComments": Array [],
+                "left": Identifier {
+                  "name": "pid_clamp",
+                  "type": "Identifier",
+                },
+                "right": Literal {
+                  "raw": "1",
+                  "type": "Literal",
+                  "value": 1,
+                },
+                "trailingComments": Array [
+                  ";",
+                ],
+                "type": "AssignmentStatement",
+              },
+              AssignmentStatement {
+                "leadingComments": Array [],
+                "left": Identifier {
+                  "name": "pid_result",
+                  "type": "Identifier",
+                },
+                "right": Literal {
+                  "raw": "32767",
+                  "type": "Literal",
+                  "value": 32767,
+                },
+                "trailingComments": Array [
+                  ";",
+                ],
+                "type": "AssignmentStatement",
+              },
             ],
-            "type": "AssignmentStatement",
-          },
-          AssignmentStatement {
             "leadingComments": Array [],
+            "trailingComments": Array [],
+            "type": "BlockStatement",
+          },
+          "leadingComments": Array [],
+          "test": BinaryExpression {
             "left": Identifier {
               "name": "pid_result",
               "type": "Identifier",
             },
+            "operator": ">",
             "right": Literal {
               "raw": "32767",
               "type": "Literal",
               "value": 32767,
             },
-            "trailingComments": Array [
-              ";",
-            ],
-            "type": "AssignmentStatement",
+            "type": "BinaryExpression",
           },
-        ],
-        "leadingComments": Array [],
-        "trailingComments": Array [],
-        "type": "BlockStatement",
-      },
-      "leadingComments": Array [],
-      "test": BinaryExpression {
-        "left": Identifier {
-          "name": "pid_result",
-          "type": "Identifier",
+          "trailingComments": Array [],
+          "type": "IfStatement",
         },
-        "operator": ">",
-        "right": Literal {
-          "raw": "32767",
-          "type": "Literal",
-          "value": 32767,
+        AssignmentStatement {
+          "leadingComments": Array [],
+          "left": Identifier {
+            "name": "PID_Output",
+            "type": "Identifier",
+          },
+          "right": Identifier {
+            "name": "pid_result",
+            "type": "Identifier",
+          },
+          "trailingComments": Array [
+            ";",
+          ],
+          "type": "AssignmentStatement",
         },
-        "type": "BinaryExpression",
-      },
-      "trailingComments": Array [],
-      "type": "IfStatement",
-    },
-    AssignmentStatement {
-      "leadingComments": Array [],
-      "left": Identifier {
-        "name": "PID_Output",
-        "type": "Identifier",
-      },
-      "right": Identifier {
-        "name": "pid_result",
-        "type": "Identifier",
-      },
-      "trailingComments": Array [
-        ";",
+        ReturnStatement {
+          "leadingComments": Array [],
+          "trailingComments": Array [],
+          "type": "ReturnStatement",
+        },
       ],
-      "type": "AssignmentStatement",
-    },
-    ReturnStatement {
       "leadingComments": Array [],
-      "trailingComments": Array [],
-      "type": "ReturnStatement",
-    },
-    ExpressionStatement {
-      "expression": Identifier {
-        "name": "End_Module",
+      "moduleName": Identifier {
+        "name": "FOS_Automate_PID",
         "type": "Identifier",
       },
-      "leadingComments": Array [],
       "trailingComments": Array [],
-      "type": "ExpressionStatement",
+      "type": "ModuleStatement",
     },
   ],
   "type": "Program",

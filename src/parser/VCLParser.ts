@@ -28,6 +28,7 @@ export default class VCLParser extends CstParser {
 
   private statement = this.RULE('statement', () => {
     this.OR([
+      { ALT: () => this.SUBRULE(this.moduleStatement) },
       { ALT: () => this.SUBRULE(this.labelStatement) },
       { ALT: () => this.SUBRULE(this.ifStatement) },
       { ALT: () => this.SUBRULE(this.whileStatement) },
@@ -46,8 +47,6 @@ export default class VCLParser extends CstParser {
       { ALT: () => this.SUBRULE(this.expressionStatement) },
       { ALT: () => this.SUBRULE(this.callStatement) },
       { ALT: () => this.SUBRULE(this.includeStatement) },
-      { ALT: () => this.SUBRULE(this.beginModuleStatement) },
-      { ALT: () => this.SUBRULE(this.endModuleStatement) },
       { ALT: () => this.SUBRULE(this.enterStatement) },
       { ALT: () => this.SUBRULE(this.exitStatement) },
     ]);
@@ -155,12 +154,12 @@ export default class VCLParser extends CstParser {
     this.CONSUME(t.StringLiteral);
   });
 
-  private beginModuleStatement = this.RULE('beginModuleStatement', () => {
+  private moduleStatement = this.RULE('moduleStatement', () => {
     this.CONSUME(t.BeginModule);
     this.CONSUME(t.Identifier, { LABEL: 'label' });
-  });
-
-  private endModuleStatement = this.RULE('endModuleStatement', () => {
+    this.MANY(() => {
+      this.SUBRULE(this.statement, { LABEL: 'body' });
+    });
     this.CONSUME(t.EndModule);
   });
 
@@ -222,7 +221,7 @@ export default class VCLParser extends CstParser {
   private assignStatement = this.RULE('assignStatement', () => {
     this.CONSUME(t.Identifier);
     this.CONSUME(t.Assign);
-    this.SUBRULE(this.binaryExpression);
+    this.SUBRULE(this.binaryExpression, {LABEL:'expression'});
   });
 
   private integerLiteral = this.RULE('integerLiteral', () => {

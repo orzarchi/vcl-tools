@@ -6,15 +6,15 @@ import {
   BlockStatement,
   CallExpression,
   CallStatement,
-  ConstantDeclaration,
-  EqualsDeclaration,
+  ConstantDeclaration, EnterStatement,
+  EqualsDeclaration, ExitStatement,
   ExpressionStatement,
   GoToStatement,
   Identifier,
-  IfStatement,
+  IfStatement, IncludeStatement,
   LabelStatement,
   Literal,
-  LogicalExpression,
+  LogicalExpression, ModuleStatement,
   Program,
   ReturnStatement,
   UnaryExpression,
@@ -77,6 +77,10 @@ export default class VCLASTVisitor {
     this.visit(node.label);
   }
 
+  protected visitEnterStatement(node: EnterStatement) {
+    this.visit(node.label);
+  }
+
   protected visitGoToStatement(node: GoToStatement) {
     this.visit(node.label);
   }
@@ -103,12 +107,19 @@ export default class VCLASTVisitor {
 
   protected visitReturnStatement(node: ReturnStatement) {}
 
+  protected visitExitStatement(node: ExitStatement) {}
+
   protected visitWhileStatement(node: WhileStatement) {
     this.visit(node.test);
     this.visit(node.body);
   }
 
   protected visitBlockStatement(node: BlockStatement) {
+    this.visitMany(node.body);
+  }
+
+  protected visitModuleStatement(node: ModuleStatement) {
+    this.visit(node.moduleName);
     this.visitMany(node.body);
   }
 
@@ -134,5 +145,9 @@ export default class VCLASTVisitor {
   protected visitBitDeclaration(node: BitDeclaration) {
     this.visit(node.id);
     this.visit(node.init);
+  }
+
+  protected visitIncludeStatement(node: IncludeStatement) {
+    this.visit(node.path);
   }
 }

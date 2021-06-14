@@ -48,7 +48,7 @@ describe('AST Printing', () => {
           new AssignmentStatement(new Identifier('c'), new Literal('3', 3)),
         ])
       ),
-      `while(1)
+      `while (1)
 {
   a = 2
   c = 3

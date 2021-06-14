@@ -7,14 +7,19 @@ import {
   CallExpression,
   CallStatement,
   ConstantDeclaration,
+  EnterStatement,
   EqualsDeclaration,
+  ExitStatement,
+  Expression,
   ExpressionStatement,
   GoToStatement,
   Identifier,
-  IfStatement, IncludeStatement,
+  IfStatement,
+  IncludeStatement,
   LabelStatement,
   Literal,
   LogicalExpression,
+  ModuleStatement,
   Program,
   ReturnStatement,
   Statement,
@@ -27,10 +32,11 @@ import _ from 'lodash';
 
 const DEFAULT_INDENT_LEVEL = 4;
 const NEWLINE_STATEMENTS: Array<string> = [
+  ModuleStatement.nodeType,
   IfStatement.nodeType,
   WhileStatement.nodeType,
   GoToStatement.nodeType,
-  ReturnStatement.nodeType
+  ReturnStatement.nodeType,
 ];
 
 const NEWLINE_ONLY_BEFORE_STATEMENTS: Array<string> = [LabelStatement.nodeType];
@@ -50,10 +56,10 @@ export default class VCLASTPrinter {
   private readonly skipComments?: boolean;
 
   constructor({
-                indentLevel = 0,
-                indentStep = DEFAULT_INDENT_LEVEL,
-                skipComments
-              }: PrintingOptions = {}) {
+    indentLevel = 0,
+    indentStep = DEFAULT_INDENT_LEVEL,
+    skipComments,
+  }: PrintingOptions = {}) {
     this.indentLevel = indentLevel;
     this.indentStep = indentStep;
     this.skipComments = skipComments;
@@ -63,7 +69,7 @@ export default class VCLASTPrinter {
     return new VCLASTPrinter({
       indentStep: this.indentStep,
       indentLevel: newIndent,
-      skipComments: this.skipComments
+      skipComments: this.skipComments,
     });
   }
 
@@ -81,9 +87,11 @@ export default class VCLASTPrinter {
     if (!(methodName in this)) {
       throw new Error(`Implement ${methodName}`);
     }
-    return (this[methodName as keyof VCLASTPrinter] as (
-      node: VCLASTNode
-    ) => string | string[])(node);
+    return (
+      this[methodName as keyof VCLASTPrinter] as (
+        node: VCLASTNode
+      ) => string | string[]
+    )(node);
   };
 
   private printStatement = (
@@ -102,7 +110,7 @@ export default class VCLASTPrinter {
     if (this.shouldDecreaseIndentLevelAfterThisStatement) {
       this.indentLevel -= this.indentStep;
       if (this.indentLevel < 0) {
-        throw new Error('Can\'t decrease indent further');
+        throw new Error("Can't decrease indent further");
       }
       this.shouldDecreaseIndentLevelAfterThisStatement = false;
     }
@@ -121,7 +129,7 @@ export default class VCLASTPrinter {
         : (!shouldAddNewLineBefore && !this.lastStatementHadNewLine
             ? ['']
             : []
-        ).concat(node.leadingComments.map(x=>`${this.indent()}${x}`));
+          ).concat(node.leadingComments.map((x) => `${this.indent()}${x}`));
 
     const trailingComments = this.skipComments ? [] : node.trailingComments;
 
@@ -129,12 +137,12 @@ export default class VCLASTPrinter {
       ...(shouldAddNewLineBefore && !this.lastStatementHadNewLine ? [''] : []),
       ...leadingComments,
       statementLines[0] +
-      (trailingComments.length === 1 ? ` ${trailingComments[0]}` : ''),
+        (trailingComments.length === 1 ? ` ${trailingComments[0]}` : ''),
       ...(trailingComments.length > 1
         ? trailingComments
         : trailingComments.slice(1)),
       ...statementLines.slice(1),
-      ...(shouldAddNewLineAfter ? [''] : [])
+      ...(shouldAddNewLineAfter ? [''] : []),
     ];
 
     this.lastStatementHadNewLine = shouldAddNewLineAfter;
@@ -191,21 +199,21 @@ export default class VCLASTPrinter {
     const body = !blockStatement.body?.length
       ? []
       : blockStatement.body.map((statement, index) => {
-        return this.withIndent(this.indentStep).printStatement(
-          statement,
-          index === 0 || blockStatement.body.length === index - 1
-        );
-      });
+          return this.withIndent(this.indentStep).printStatement(
+            statement,
+            index === 0 || blockStatement.body.length === index - 1
+          );
+        });
 
     return [`{`, ..._.flatten(body), `}`];
   }
 
   private printWhileStatement(whileStatement: WhileStatement) {
     return [
-      `while(${this.printInner(whileStatement.test)})`,
+      `while (${this.printInner(whileStatement.test)})`,
       ...this.withIndent(0).printStatement(
         whileStatement.body || new BlockStatement([])
-      )
+      ),
     ];
   }
 
@@ -218,20 +226,19 @@ export default class VCLASTPrinter {
     const elseClause = !ifStatement.alternate
       ? []
       : [
-        `else`,
-        ...this.toArray(
-          this.withIndent(0).printStatement(ifStatement.alternate)
-        )
-      ];
+          `else`,
+          ...this.toArray(
+            this.withIndent(0).printStatement(ifStatement.alternate)
+          ),
+        ];
 
-    const newVar = [
-      `if${testClause}`,
+    return [
+      `if (${testClause})`,
       ...this.toArray(
         this.withIndent(0).printStatement(ifStatement.consequent)
       ),
-      ...elseClause
+      ...elseClause,
     ];
-    return newVar;
   }
 
   private printIdentifier(identifier: Identifier) {
@@ -254,16 +261,22 @@ export default class VCLASTPrinter {
       .join(', ')})`;
   }
 
+  private tryWrapWithParenthesis(exp: Expression) {
+    return exp instanceof BinaryExpression || exp instanceof LogicalExpression
+      ? `(${this.printInner(exp)})`
+      : this.printInner(exp);
+  }
+
   private printBinaryExpression(binaryExpression: BinaryExpression) {
-    return `${this.printInner(binaryExpression.left)} ${
+    return `${this.tryWrapWithParenthesis(binaryExpression.left)} ${
       binaryExpression.operator
-    } ${this.printInner(binaryExpression.right)}`;
+    } ${this.tryWrapWithParenthesis(binaryExpression.right)}`;
   }
 
   private printLogicalExpression(logicalExpression: LogicalExpression) {
-    return `(${this.printInner(logicalExpression.left)}) ${
+    return `${this.tryWrapWithParenthesis(logicalExpression.left)} ${
       logicalExpression.operator
-    } (${this.printInner(logicalExpression.right)})`;
+    } ${this.tryWrapWithParenthesis(logicalExpression.right)}`;
   }
 
   private printCallStatement(callExpression: CallStatement) {
@@ -275,9 +288,17 @@ export default class VCLASTPrinter {
     return `goto ${this.printInner(gotoStatement.label)}`;
   }
 
+  private printEnterStatement(enterStatement: EnterStatement) {
+    return `enter ${this.printInner(enterStatement.label)}`;
+  }
+
+  private printExitStatement(exitStatement: ExitStatement) {
+    return `exit`;
+  }
+
   private printLabelStatement(labelStatement: LabelStatement) {
     const output = `${this.printInner(labelStatement.label)}:`;
-    this.indentLevel = 0
+    this.indentLevel = 0;
     this.increaseIndentAfter();
     return output;
   }
@@ -289,6 +310,23 @@ export default class VCLASTPrinter {
 
   private printIncludeStatement(includeStatement: IncludeStatement) {
     return `include ${includeStatement.path.raw}`;
+  }
+
+  private printModuleStatement(moduleStatement: ModuleStatement) {
+    const body = !moduleStatement.body?.length
+      ? []
+      : moduleStatement.body.map((statement, index) => {
+          return this.withIndent(this.indentStep).printStatement(
+            statement,
+            index === 0 || moduleStatement.body.length === index - 1
+          );
+        });
+
+    return [
+      `Begin_Module ${moduleStatement.moduleName}`,
+      ..._.flatten(body),
+      `End_Module`,
+    ];
   }
 
   private increaseIndentAfter() {

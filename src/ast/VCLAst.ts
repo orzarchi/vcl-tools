@@ -1,6 +1,24 @@
 import _ from 'lodash';
 
-export type Operator = '+' | '-' | '<' | '>' | '==' | '<>';
+export type Operator =
+  | '+'
+  | '-'
+  | '*'
+  | '/'
+  | '%'
+  | '&'
+  | '|'
+  | '^'
+  | '~'
+  | '<<'
+  | '>>'
+  | '<'
+  | '>'
+  | '=='
+  | '<>'
+  | '>='
+  | '<=';
+
 export type LogicalOperator = '&&' | '||';
 
 export interface VCLASTNode {
@@ -276,25 +294,21 @@ export class IncludeStatement extends Statement {
   }
 }
 
-export class BeginModuleStatement extends Statement {
-  static readonly nodeType = 'BeginModuleStatement';
-  type = 'BeginModuleStatement';
+export class ModuleStatement extends Statement {
+  static readonly nodeType = 'ModuleStatement';
+  type = 'ModuleStatement';
 
-  constructor(public moduleName: Literal) {
+  constructor(public moduleName: Identifier, public body:Statement[]) {
     super();
   }
 
-  protected innerEquals(other: BeginModuleStatement): boolean {
-    return this.moduleName.equals(other.moduleName);
-  }
-}
-
-export class EndModuleStatement extends Statement {
-  static readonly nodeType = 'EndModuleStatement';
-  type = 'EndModuleStatement';
-
-  protected innerEquals(other: EndModuleStatement): boolean {
-    return true;
+  protected innerEquals(other: ModuleStatement): boolean {
+    return (
+      this.body.length === other.body.length &&
+      _.zip(this.body, other.body).every(([statement1, statement2]) =>
+        statement1!.equals(statement2!)
+      )
+    );
   }
 }
 
