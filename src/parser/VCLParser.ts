@@ -3,7 +3,7 @@ import * as t from './tokens';
 import { MostEnclosiveCstNodeByOffset } from './types';
 import { attachComments } from './comments';
 
-const VlcLexer = new Lexer(t.allTokens);
+export const VCLLexer = new Lexer(t.allTokens);
 
 export default class VCLParser extends CstParser {
   mostEnclosiveCstNodeByStartOffset: MostEnclosiveCstNodeByOffset = {};
@@ -257,7 +257,7 @@ export default class VCLParser extends CstParser {
 
 export function parse(text: string) {
   const parser = new VCLParser();
-  const lexResult = VlcLexer.tokenize(text);
+  const lexResult = VCLLexer.tokenize(text);
 
   // setting a new input will RESET the parser instance's state.
   parser.input = lexResult.tokens;
