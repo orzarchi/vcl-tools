@@ -1,6 +1,6 @@
 {
   "name": "vcl-tools",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "main": "index.js",
   "license": "MIT",
   "types": "dist/index.d.ts",
@@ -9,10 +9,13 @@
     "chevrotain": "^7.0.0",
     "lodash": "^4.17.21"
   },
+  "files": [
+    "/dist"
+  ],
   "scripts": {
-    "build": "tsc --build tsconfig.lib.json",
+    "build": "rm -rf dist && tsc --build tsconfig.lib.json",
     "test": "jest",
-    "prepublish": "tsc --build tsconfig.lib.json"
+    "prepublish": "npm run build"
   },
   "devDependencies": {
     "@types/jest": "^26.0.23",
