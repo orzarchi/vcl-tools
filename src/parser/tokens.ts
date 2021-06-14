@@ -47,22 +47,25 @@ export const LogicalOperator = createToken({
 
 export const Colon = createToken({ name: 'Colon', pattern: /:/ });
 export const Comma = createToken({ name: 'Comma', pattern: /,/ });
-export const Bit = createKeywordLikeToken({ name: 'Bit', pattern: /bit/ });
+export const Bit = createKeywordLikeToken({ name: 'Bit', pattern: /bit/i });
 export const Period = createToken({ name: 'Period', pattern: /\./ });
-export const If = createKeywordLikeToken({ name: 'If', pattern: /[Ii]f/ });
-export const Else = createKeywordLikeToken({ name: 'Else', pattern: /else/ });
+export const Include = createKeywordLikeToken({ name: 'Include', pattern: /include/i });
+export const If = createKeywordLikeToken({ name: 'If', pattern: /if/i });
+export const Else = createKeywordLikeToken({ name: 'Else', pattern: /else/i });
 export const While = createKeywordLikeToken({
   name: 'While',
-  pattern: /while/,
+  pattern: /while/i,
 });
+export const BeginModule = createKeywordLikeToken({ name: 'BeginModule', pattern: /begin_module/i });
+export const EndModule = createKeywordLikeToken({ name: 'EndModule', pattern: /end_module/i });
 export const Begin = createKeywordLikeToken({
   name: 'Begin',
-  pattern: /begin/,
+  pattern: /begin/i,
 });
-export const End = createKeywordLikeToken({ name: 'End', pattern: /end/ });
+export const End = createKeywordLikeToken({ name: 'End', pattern: /end/i });
 export const Return = createKeywordLikeToken({
   name: 'Return',
-  pattern: /Return/,
+  pattern: /return/i,
 });
 export const LCurly = createToken({ name: 'LCurly', pattern: /{/ });
 export const RCurly = createToken({ name: 'RCurly', pattern: /}/ });
@@ -70,6 +73,11 @@ export const LParen = createToken({ name: 'LParen', pattern: /\(/ });
 export const RParen = createToken({ name: 'RParen', pattern: /\)/ });
 export const Equals = createToken({
   name: 'Equals',
+  pattern: /==/,
+  categories: [Operator],
+});
+export const Assign = createToken({
+  name: 'Assign',
   pattern: /=/,
   categories: [Operator],
 });
@@ -77,6 +85,16 @@ export const NotEquals = createToken({
   name: 'NotEquals',
   pattern: /<>/,
   categories: [Operator],
+});
+export const And = createKeywordLikeToken({
+  name: 'And',
+  pattern: /and|&&/i,
+  categories: [Operator, LogicalOperator],
+});
+export const Or = createKeywordLikeToken({
+  name: 'Or',
+  pattern: /or|\|\|/i,
+  categories: [Operator, LogicalOperator],
 });
 export const GreaterThanEqual = createToken({
   name: 'GreaterThanEqual',
@@ -86,6 +104,16 @@ export const GreaterThanEqual = createToken({
 export const LessThanEqual = createToken({
   name: 'LessThanEqual',
   pattern: /<=/,
+  categories: [Operator],
+});
+export const ShiftLeft = createToken({
+  name: 'ShiftLeft',
+  pattern: /<</,
+  categories: [Operator],
+});
+export const ShiftRight = createToken({
+  name: 'ShiftRight',
+  pattern: />>/,
   categories: [Operator],
 });
 export const GreaterThan = createToken({
@@ -98,6 +126,26 @@ export const LessThan = createToken({
   pattern: /</,
   categories: [Operator],
 });
+export const Multiply = createToken({
+  name: 'Multiply',
+  pattern: /\*/,
+  categories: [Operator],
+});
+export const Divide = createToken({
+  name: 'Divide',
+  pattern: /\//,
+  categories: [Operator],
+});
+export const BitwiseAnd = createToken({
+  name: 'BitwiseAnd',
+  pattern: /&/,
+  categories: [Operator],
+});
+export const BitwiseOr = createToken({
+  name: 'BitwiseOr',
+  pattern: /\|/,
+  categories: [Operator],
+});
 export const Plus = createToken({
   name: 'Plus',
   pattern: /\+/,
@@ -108,37 +156,39 @@ export const Minus = createToken({
   pattern: /-/,
   categories: [Operator, UnaryPrefixOperator],
 });
-export const And = createKeywordLikeToken({
-  name: 'And',
-  pattern: /and/,
-  categories: [LogicalOperator],
-});
-export const Call = createKeywordLikeToken({ name: 'Call', pattern: /call/ });
-export const GoTo = createKeywordLikeToken({ name: 'GoTo', pattern: /goto/ });
+export const Enter = createKeywordLikeToken({ name: 'Enter', pattern: /enter/i });
+export const Exit = createKeywordLikeToken({ name: 'Exit', pattern: /exit/i });
+export const Call = createKeywordLikeToken({ name: 'Call', pattern: /call/i });
+export const GoTo = createKeywordLikeToken({ name: 'GoTo', pattern: /goto/i });
 export const Alias = createKeywordLikeToken({
   name: 'Alias',
-  pattern: /alias/,
+  pattern: /alias/i,
 });
 export const Variable = createKeywordLikeToken({
   name: 'Variable',
-  pattern: /[vV]ariable/,
+  pattern: /variable/i,
 });
 export const Constant = createKeywordLikeToken({
   name: 'Constant',
-  pattern: /[Cc]onstant/,
+  pattern: /constant/i,
 });
 export const Create = createKeywordLikeToken({
   name: 'Create',
-  pattern: /[Cc]reate/,
+  pattern: /create/i,
 });
 export const AutoEquals = createKeywordLikeToken({
   name: 'AutoEquals',
-  pattern: /[Ee]quals/,
+  pattern: /equals/i,
 });
 
 export const HexadecimalLiteral = createToken({
   name: 'HexadecimalLiteral',
-  pattern: /0x[0-9A-F]+/,
+  pattern: /0x[0-9A-Fa-f]+/,
+});
+
+export const StringLiteral = createToken({
+  name: 'StringLiteral',
+  pattern: /"(?:[^\\"]|\\[bfnrtv"\\/])*"/,
 });
 
 // Identifier must appear after all keywords

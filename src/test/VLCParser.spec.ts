@@ -26,4 +26,10 @@ describe('The VLC Grammar', () => {
   it('file1', async () => {
     await parseAndAssert('BareBones_Ver1');
   });
+  it('file2', async () => {
+    await parseAndAssert('module');
+  });
+  it('file3', async () => {
+    await parseAndAssert('logical_expresssions');
+  });
 });

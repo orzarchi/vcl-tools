@@ -58,6 +58,9 @@ describe('AST Printing', () => {
   it('file1', async () => {
     return assertAstToPrint('BareBones_Ver1');
   });
+  it('file2', async () => {
+    return assertAstToPrint('module');
+  });
   it('whitespace_rules_test_file', async () => {
     expect(
       await assertAstToPrint('whitespace_rules_test_file')

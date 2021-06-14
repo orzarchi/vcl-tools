@@ -45,6 +45,11 @@ export default class VCLParser extends CstParser {
       { ALT: () => this.SUBRULE(this.bitStatement) },
       { ALT: () => this.SUBRULE(this.expressionStatement) },
       { ALT: () => this.SUBRULE(this.callStatement) },
+      { ALT: () => this.SUBRULE(this.includeStatement) },
+      { ALT: () => this.SUBRULE(this.beginModuleStatement) },
+      { ALT: () => this.SUBRULE(this.endModuleStatement) },
+      { ALT: () => this.SUBRULE(this.enterStatement) },
+      { ALT: () => this.SUBRULE(this.exitStatement) },
     ]);
   });
 
@@ -59,7 +64,7 @@ export default class VCLParser extends CstParser {
 
   private ifStatement = this.RULE('ifStatement', () => {
     this.CONSUME(t.If);
-    this.SUBRULE(this.logicalExpression, { LABEL: 'test' });
+    this.SUBRULE(this.parenthesisExpression, { LABEL: 'test' });
     this.SUBRULE(this.blockStatement, { LABEL: 'consequent' });
     this.OPTION(() => {
       this.CONSUME(t.Else);
@@ -74,7 +79,7 @@ export default class VCLParser extends CstParser {
 
   private whileStatement = this.RULE('whileStatement', () => {
     this.CONSUME(t.While);
-    this.SUBRULE(this.logicalExpression, { LABEL: 'test' });
+    this.SUBRULE(this.parenthesisExpression, { LABEL: 'test' });
     this.SUBRULE(this.blockStatement, { LABEL: 'body' });
   });
 
@@ -126,7 +131,7 @@ export default class VCLParser extends CstParser {
   });
 
   private expressionStatement = this.RULE('expressionStatement', () => {
-    this.SUBRULE(this.expression, { LABEL: 'expression' });
+    this.SUBRULE(this.binaryExpression, { LABEL: 'expression' });
   });
 
   private invocationSuffix = this.RULE('invocationSuffix', () => {
@@ -134,7 +139,7 @@ export default class VCLParser extends CstParser {
     this.MANY_SEP({
       SEP: t.Comma,
       DEF: () => {
-        this.SUBRULE(this.expression, { LABEL: 'arguments' });
+        this.SUBRULE(this.binaryExpression, { LABEL: 'arguments' });
       },
     });
     this.CONSUME(t.RParen);
@@ -143,6 +148,29 @@ export default class VCLParser extends CstParser {
   private callStatement = this.RULE('callStatement', () => {
     this.CONSUME(t.Call);
     this.CONSUME(t.Identifier, { LABEL: 'label' });
+  });
+
+  private includeStatement = this.RULE('includeStatement', () => {
+    this.CONSUME(t.Include);
+    this.CONSUME(t.StringLiteral);
+  });
+
+  private beginModuleStatement = this.RULE('beginModuleStatement', () => {
+    this.CONSUME(t.BeginModule);
+    this.CONSUME(t.Identifier, { LABEL: 'label' });
+  });
+
+  private endModuleStatement = this.RULE('endModuleStatement', () => {
+    this.CONSUME(t.EndModule);
+  });
+
+  private enterStatement = this.RULE('enterStatement', () => {
+    this.CONSUME(t.Enter);
+    this.CONSUME(t.Identifier, { LABEL: 'label' });
+  });
+
+  private exitStatement = this.RULE('exitStatement', () => {
+    this.CONSUME(t.Exit);
   });
 
   private gotoStatement = this.RULE('gotoStatement', () => {
@@ -159,14 +187,10 @@ export default class VCLParser extends CstParser {
     this.CONSUME(t.Int);
   });
 
-  private expression = this.RULE('expression', () => {
-    this.SUBRULE(this.binaryExpression);
-  });
-
   private binaryExpression = this.RULE('binaryExpression', () => {
     this.SUBRULE(this.unaryExpression);
     this.MANY(() => {
-      this.OR([{ ALT: () => this.CONSUME(t.Operator, { LABEL: 'operator' }) }]);
+      this.CONSUME(t.Operator, { LABEL: 'operator' });
       this.SUBRULE2(this.unaryExpression);
     });
   });
@@ -175,20 +199,8 @@ export default class VCLParser extends CstParser {
     this.MANY(() => {
       this.CONSUME(t.UnaryPrefixOperator, { LABEL: 'operator' });
     });
+
     this.SUBRULE(this.primary);
-  });
-
-  private assignStatement = this.RULE('assignStatement', () => {
-    this.CONSUME(t.Identifier);
-    this.CONSUME(t.Equals);
-    this.SUBRULE(this.expression);
-  });
-
-  private integerLiteral = this.RULE('integerLiteral', () => {
-    this.OR([
-      { ALT: () => this.CONSUME(t.HexadecimalLiteral) },
-      { ALT: () => this.CONSUME(t.Int) },
-    ]);
   });
 
   private primary = this.RULE('primary', () => {
@@ -207,19 +219,23 @@ export default class VCLParser extends CstParser {
     ]);
   });
 
-  private parenthesisExpression = this.RULE('parenthesisExpression', () => {
-    this.CONSUME(t.LParen);
-    this.SUBRULE(this.expression, { LABEL: 'expression' });
-    this.CONSUME(t.RParen);
+  private assignStatement = this.RULE('assignStatement', () => {
+    this.CONSUME(t.Identifier);
+    this.CONSUME(t.Assign);
+    this.SUBRULE(this.binaryExpression);
   });
 
-  private logicalExpression = this.RULE('logicalExpression', () => {
-    this.MANY_SEP({
-      SEP: t.LogicalOperator,
-      DEF: () => {
-        this.SUBRULE1(this.parenthesisExpression);
-      },
-    });
+  private integerLiteral = this.RULE('integerLiteral', () => {
+    this.OR([
+      { ALT: () => this.CONSUME(t.HexadecimalLiteral) },
+      { ALT: () => this.CONSUME(t.Int) },
+    ]);
+  });
+
+  private parenthesisExpression = this.RULE('parenthesisExpression', () => {
+    this.CONSUME(t.LParen);
+    this.SUBRULE(this.binaryExpression, { LABEL: 'expression' });
+    this.CONSUME(t.RParen);
   });
 
   private cstPostNonTerminal(ruleCstResult: CstNode, ruleName: string) {

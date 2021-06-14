@@ -20,7 +20,7 @@ async function visitFile(testFile: string) {
   visit(getVCLAST(file.toString()));
 }
 
-describe('AST Printing', () => {
+describe('AST Generic Visitor', () => {
   it('basic program', async () => {
     visit(
       new Program([
@@ -41,5 +41,8 @@ describe('AST Printing', () => {
   });
   it('file1', async () => {
     return visitFile('BareBones_Ver1');
+  });
+  it('file2', async () => {
+    return visitFile('module');
   });
 });

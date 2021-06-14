@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
-export type Operator = '+' | '-' | '<' | '>' | '=' | '<>';
-export type LogicalOperator = 'and' | 'or';
+export type Operator = '+' | '-' | '<' | '>' | '==' | '<>';
+export type LogicalOperator = '&&' | '||';
 
 export interface VCLASTNode {
   type: string;
@@ -108,6 +108,19 @@ export class CallStatement extends Statement {
   }
 }
 
+export class EnterStatement extends Statement {
+  static readonly nodeType = 'EnterStatement';
+  type = 'EnterStatement';
+
+  constructor(public label: Identifier) {
+    super();
+  }
+
+  protected innerEquals(other: EnterStatement): boolean {
+    return this.label.equals(other.label);
+  }
+}
+
 export class GoToStatement extends Statement {
   static readonly nodeType = 'GoToStatement';
   type = 'GoToStatement';
@@ -164,6 +177,15 @@ export class ReturnStatement extends Statement {
   type = 'ReturnStatement';
 
   protected innerEquals(other: ReturnStatement): boolean {
+    return true;
+  }
+}
+
+export class ExitStatement extends Statement {
+  static readonly nodeType = 'ExitStatement';
+  type = 'ExitStatement';
+
+  protected innerEquals(other: ExitStatement): boolean {
     return true;
   }
 }
@@ -241,6 +263,41 @@ export class BitDeclaration extends Statement {
   }
 }
 
+export class IncludeStatement extends Statement {
+  static readonly nodeType = 'IncludeStatement';
+  type = 'IncludeStatement';
+
+  constructor(public path: Literal) {
+    super();
+  }
+
+  protected innerEquals(other: IncludeStatement): boolean {
+    return this.path.equals(other.path);
+  }
+}
+
+export class BeginModuleStatement extends Statement {
+  static readonly nodeType = 'BeginModuleStatement';
+  type = 'BeginModuleStatement';
+
+  constructor(public moduleName: Literal) {
+    super();
+  }
+
+  protected innerEquals(other: BeginModuleStatement): boolean {
+    return this.moduleName.equals(other.moduleName);
+  }
+}
+
+export class EndModuleStatement extends Statement {
+  static readonly nodeType = 'EndModuleStatement';
+  type = 'EndModuleStatement';
+
+  protected innerEquals(other: EndModuleStatement): boolean {
+    return true;
+  }
+}
+
 // Expressions
 
 export class Identifier extends Expression {
@@ -283,9 +340,15 @@ export class Literal extends Expression {
     return new Literal(hexString, parseInt(hexString, 16));
   }
 
+  static fromString(quotedString: string) {
+    return new Literal(quotedString, quotedString.slice(1, -1));
+  }
+
   static guess(literal: string) {
     return literal.includes('0x')
       ? Literal.fromHex(literal)
+      : literal.includes('"')
+      ? Literal.fromString(literal)
       : Literal.fromNumber(parseInt(literal));
   }
 
@@ -366,26 +429,5 @@ export class LogicalExpression extends Expression {
       this.left.equals(other.left) &&
       this.right.equals(other.right)
     );
-  }
-
-  static fromBinaryExpressions(statements: BinaryExpression[]) {
-    if (statements.length == 1) {
-      return statements[0];
-    } else {
-      const recurseLogicalExpression = (
-        binaryExpressions: BinaryExpression[]
-      ): LogicalExpression | BinaryExpression => {
-        if (binaryExpressions.length === 1) {
-          return binaryExpressions[0];
-        }
-        return new LogicalExpression(
-          'and',
-          recurseLogicalExpression(binaryExpressions.slice(0, -1)),
-          _.last(binaryExpressions)!
-        );
-      };
-
-      return recurseLogicalExpression(statements);
-    }
   }
 }

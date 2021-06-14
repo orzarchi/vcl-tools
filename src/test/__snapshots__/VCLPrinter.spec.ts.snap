@@ -23,7 +23,7 @@ else
 
 if(Get_Received_Status(TestMessage) = 0)
 {
-    Return
+    return
 }
 
 Clear_Received_Status(TestMessage)"

@@ -11,7 +11,7 @@ import {
   ExpressionStatement,
   GoToStatement,
   Identifier,
-  IfStatement,
+  IfStatement, IncludeStatement,
   LabelStatement,
   Literal,
   LogicalExpression,
@@ -21,7 +21,7 @@ import {
   UnaryExpression,
   VariableDeclaration,
   VCLASTNode,
-  WhileStatement
+  WhileStatement,
 } from '../ast/VCLAst';
 import _ from 'lodash';
 
@@ -284,7 +284,11 @@ export default class VCLASTPrinter {
 
   private printReturnStatement(returnStatement: ReturnStatement) {
     this.decreaseIndentAfter();
-    return 'Return';
+    return 'return';
+  }
+
+  private printIncludeStatement(includeStatement: IncludeStatement) {
+    return `include ${includeStatement.path.raw}`;
   }
 
   private increaseIndentAfter() {

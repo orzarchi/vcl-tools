@@ -1,3 +1,7 @@
+; Include module
+Include "C:\\module.vcl"
+
+
 ;=======================================================================
 ;    TE13_BareBones_Ver1  TestVersion
 ;****************************************************************************
@@ -111,35 +115,35 @@ Return         ;End Setup Mailboxes
 ;======================================================================================
 Handle_TestMessage_098:
 
-  if (Activate_REAR = 0)
+  if (Activate_REAR == 0)
   {Driver_12_Command = 0}    ;Rear  CHANGED TO HALF_BRIDGE 2
   else
   {Driver_12_Command = cPWM_Output
   autouser286 = autouser286 + 1}
 
-  if (Activate_FRONT = 0);
+  if (Activate_FRONT == 0);
   {Digital_Out_3_Command = 0}
   else
   {Digital_Out_3_Command = 1}
 
 
-  if(Activate_PWM3         = 0)
+  if(Activate_PWM3         == 0)
    {Driver_3_Command = 0}
   else
    {Driver_3_Command = cPWM_Output}
 
 
-   if (Activate_PWM4 = 0)
+   if (Activate_PWM4 == 0)
     {Driver_4_Command = 0}
    else
    {Driver_4_Command = cPWM_Output}
 
-   if (Activate_PWM2_Switch = 0)
+   if (Activate_PWM2_Switch == 0)
     {Driver_2_Command = 0}
    else
     {Driver_2_Command = cPWM_Output}
 
-   if (Activate_PWM5 = 0)
+   if (Activate_PWM5 == 0)
     {Driver_5_Command = 0}
    else
     {Driver_5_Command = cPWM_Output}

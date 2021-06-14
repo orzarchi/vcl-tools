@@ -5,7 +5,10 @@ import { VCLASTNode } from '../ast/VCLAst';
 import { getFullTestVclPath } from './utils';
 
 async function parseAndGetAstContent(fileContent: string) {
-  return new VCLASTCreatorVisitor().visit(parse(fileContent).cst) as VCLASTNode;
+  const {cst,lexErrors, parseErrors } = parse(fileContent);
+  expect(parseErrors).toHaveLength(0);
+  expect(lexErrors).toHaveLength(0);
+  return new VCLASTCreatorVisitor().visit(cst) as VCLASTNode;
 }
 
 async function parseAndGetAst(testFile: string) {
@@ -16,6 +19,10 @@ async function parseAndGetAst(testFile: string) {
 describe('Create VLC AST', () => {
   it('file1', async () => {
     const ast = await parseAndGetAst('BareBones_Ver1');
+    expect(ast).toMatchSnapshot();
+  });
+  it('file2', async () => {
+    const ast = await parseAndGetAst('module');
     expect(ast).toMatchSnapshot();
   });
   it('bitStatement', async () => {

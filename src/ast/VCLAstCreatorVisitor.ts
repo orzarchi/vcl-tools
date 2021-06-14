@@ -27,6 +27,7 @@ import {
   Operator,
   Statement,
   LogicalOperator,
+  IncludeStatement,
 } from './VCLAst';
 import { CstElementWithComments } from '../parser/types';
 
@@ -75,7 +76,8 @@ export default class VCLASTCreatorVisitor extends BaseVCLVisitor {
       this.visit(ctx.bitStatement) ||
       this.visit(ctx.assignStatement) ||
       this.visit(ctx.expressionStatement) ||
-      this.visit(ctx.callStatement);
+      this.visit(ctx.callStatement) ||
+      this.visit(ctx.includeStatement);
 
     return VCLASTCreatorVisitor.tryAttachComments(ctx, statement);
   }
@@ -156,16 +158,16 @@ export default class VCLASTCreatorVisitor extends BaseVCLVisitor {
 
   binaryExpression(ctx: any): BinaryExpression {
     const recurseBinaryExpression = (
-      terms: unknown[],
+      terms: CstNode[],
       operators: IToken[]
     ): BinaryExpression => {
       if (terms.length === 1) {
-        return this.visit(ctx.unaryExpression);
+        return this.visit(terms);
       }
       return new BinaryExpression(
-        _.last(operators)!.image as Operator,
+        (_.last(operators)!.image).replace('==','=') as Operator,
         recurseBinaryExpression(
-          ctx.unaryExpression.slice(0, -1),
+          terms.slice(0, -1),
           operators.slice(0, -1)
         ),
         this.visit(_.last(ctx.unaryExpression) as CstNode)
@@ -184,7 +186,7 @@ export default class VCLASTCreatorVisitor extends BaseVCLVisitor {
         return this.visit(ctx.parenthesisExpression);
       }
       return new LogicalExpression(
-        _.last(operators)!.image as LogicalOperator,
+        _.last(operators)!.image.toLowerCase().replace('and','&&').replace('or','||') as LogicalOperator,
         recurseLogicalExpression(
           ctx.parenthesisExpression.slice(0, -1),
           operators.slice(0, -1)
@@ -257,7 +259,15 @@ export default class VCLASTCreatorVisitor extends BaseVCLVisitor {
     );
   }
 
-  private static tryAttachComments<T extends Statement>(ctx: any, statement: T): T {
+  includeStatement(ctx: any): IncludeStatement {
+    const path = Literal.fromString(ctx.StringLiteral[0].image);
+    return new IncludeStatement(path);
+  }
+
+  private static tryAttachComments<T extends Statement>(
+    ctx: any,
+    statement: T
+  ): T {
     const recurseForNodes = (node: CstElement | CstElement[]) => {
       if (_.isArray(node)) {
         (node as CstElement[]).map(recurseForNodes);
@@ -269,12 +279,14 @@ export default class VCLASTCreatorVisitor extends BaseVCLVisitor {
         const trailingComments = (node as CstElementWithComments)
           .trailingComments;
         if (leadingComments) {
-          statement.leadingComments.push(...
-            leadingComments?.map((x) => x.image.trimEnd()) || []);
+          statement.leadingComments.push(
+            ...(leadingComments?.map((x) => x.image.trimEnd()) || [])
+          );
         }
         if (trailingComments) {
-          statement.trailingComments.push(...
-            trailingComments?.map((x) => x.image.trimEnd()) || []);
+          statement.trailingComments.push(
+            ...(trailingComments?.map((x) => x.image.trimEnd()) || [])
+          );
         }
         return;
       }
