@@ -196,10 +196,12 @@ export default class VCLASTPrinter {
   }
 
   private printBlockStatement(blockStatement: BlockStatement) {
+    const printer = this.withIndent(this.indentStep);
+
     const body = !blockStatement.body?.length
       ? []
       : blockStatement.body.map((statement, index) => {
-          return this.withIndent(this.indentStep).printStatement(
+          return printer.printStatement(
             statement,
             index === 0 || blockStatement.body.length === index - 1
           );
@@ -280,32 +282,31 @@ export default class VCLASTPrinter {
   }
 
   private printCallStatement(callExpression: CallStatement) {
-    return `call ${this.printInner(callExpression.label)}`;
+    return `Call ${this.printInner(callExpression.label)}`;
   }
 
   private printGoToStatement(gotoStatement: GoToStatement) {
     this.decreaseIndentAfter();
-    return `goto ${this.printInner(gotoStatement.label)}`;
+    return `Goto ${this.printInner(gotoStatement.label)}`;
   }
 
   private printEnterStatement(enterStatement: EnterStatement) {
-    return `enter ${this.printInner(enterStatement.label)}`;
+    return `Enter ${this.printInner(enterStatement.label)}`;
   }
 
   private printExitStatement(exitStatement: ExitStatement) {
-    return `exit`;
+    return `Exit`;
   }
 
   private printLabelStatement(labelStatement: LabelStatement) {
     const output = `${this.printInner(labelStatement.label)}:`;
-    this.indentLevel = 0;
     this.increaseIndentAfter();
     return output;
   }
 
   private printReturnStatement(returnStatement: ReturnStatement) {
     this.decreaseIndentAfter();
-    return 'return';
+    return 'Return';
   }
 
   private printIncludeStatement(includeStatement: IncludeStatement) {
@@ -313,10 +314,12 @@ export default class VCLASTPrinter {
   }
 
   private printModuleStatement(moduleStatement: ModuleStatement) {
+    const printer = this.withIndent(this.indentStep);
+
     const body = !moduleStatement.body?.length
       ? []
       : moduleStatement.body.map((statement, index) => {
-          return this.withIndent(this.indentStep).printStatement(
+          return printer.printStatement(
             statement,
             index === 0 || moduleStatement.body.length === index - 1
           );
