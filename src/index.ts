@@ -1,10 +1,12 @@
 import VCLAstPrinter from './printer/VCLAstPrinter';
-import { Program } from './ast/VCLAst';
+import { Program } from './ast';
 import VCLASTCreatorVisitor from './ast/VCLAstCreatorVisitor';
 import { parse, VCLLexer } from './parser/VCLParser';
+export { default as VCLAstPrinter } from './printer/VCLAstPrinter';
 export { default as VCLASTVisitor } from './ast/VCLAstVisitor';
 export { default as VCLParser, VCLLexer } from './parser/VCLParser';
 export { default as VCLAstCreatorVisitor } from './ast/VCLAstCreatorVisitor';
+export *  from './ast/VCLAst';
 
 export const parseVCLtoAST = (vclContent: string) => {
   const vclastCreatorVisitor = new VCLASTCreatorVisitor();

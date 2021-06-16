@@ -1,10 +1,10 @@
 import VCLAstPrinter from '../printer/VCLAstPrinter';
 import {
-  AssignmentStatement,
+  AssignmentStatement, BitDeclaration,
   BlockStatement,
   Identifier,
   Literal,
-  Program,
+  Program, VariableDeclaration,
   VCLASTNode,
   WhileStatement,
 } from '../ast/VCLAst';
@@ -53,6 +53,18 @@ describe('AST Printing', () => {
   a = 2
   c = 3
 }`
+    );
+  });
+  it('bit statement', async () => {
+    expectPrinted(
+      new Program(
+        [
+          new VariableDeclaration(Identifier.from('incoming_data')),
+          new BitDeclaration(Identifier.from('incoming_data_first_byte'),
+            Identifier.from('incoming_data'), 15)
+        ]),
+      `Create incoming_data variable
+incoming_data_first_byte bit incoming_data.15`
     );
   });
   it('file1', async () => {

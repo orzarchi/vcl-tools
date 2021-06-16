@@ -1,7 +1,25 @@
 ## Introduction
 
-Tools to parse a Curtis VCL source file into an AST.
-You can also pretty-print the AST back into a text file, or extend the provided parser to create extensions to the language.
+Tools to parse a Curtis VCL source file into an AST. You can also pretty-print the AST back into a text file, or extend
+the provided parser to create extensions to the language.
+
+## Usage
+```typescript
+import { parseVCLtoAST, Program, BitDeclaration, Identifier } from 'vcl-tools'
+
+const ast = parseVCLtoAST(new Program(
+  [
+    new VariableDeclaration(Identifier.from('incoming_data')),
+    new BitDeclaration(Identifier.from('incoming_data_first_byte'), 
+                       Identifier.from('incoming_data'), 15)
+  ]))
+new VCLAstPrinter().print(ast)
+
+/** Output:
+ * Create incoming_data variable
+ * incoming_data_first_byte bit incoming_data.15
+ */
+```
 
 ## High level API
 
@@ -17,15 +35,16 @@ A function that accepts a VCL source string and outputs a pretty-printed formatt
 
 A generic VCL visitor. Inherit and override specific methods to quickly go over a VCL AST. See example below.
 
-
 ## Low level building blocks
 
 ### parse(vclContent: string)
+
 A function that accepts a VCL source string and outputs a CST, along with potential errors.
 
 Useful for creating a basic compiler that doesn't require using VCL Studio.
 
 Returns the following type:
+
 ```
 {
   cst: cst,
@@ -46,11 +65,78 @@ A [chevrotain](https://github.com/SAP/chevrotain) based parser class
 
 A [chevrotain](https://github.com/SAP/chevrotain) based CST visitor
 
+### VCLAstPrinter
 
-#### Example:
+Pretty-print VCL AST.
 
-This example uses `VCLASTVisitor` to locate all CAN mailboxes used in a VCL source file, and fill a field `mailboxes` with the results (using a custom data structure `CanMailbox`).
+#### example
+
 ```typescript
+import {
+  VCLAstPrinter,
+  WhileStatement, Literal, BlockStatement,
+  AssignmentStatement, Identifier
+} from 'vcl-tools'
+
+new VCLAstPrinter().print(new WhileStatement(
+  new Literal('1', 1),
+  new BlockStatement([
+    new AssignmentStatement(new Identifier('a'), new Literal('2', 2)),
+    new AssignmentStatement(new Identifier('c'), new Literal('3', 3)),
+  ])
+))
+
+/** Output:
+ * while (1)
+ * {
+ *  a = 2
+ *  c = 3
+ * }
+ */
+```
+
+### AST types
+Every type of VCL source code can be created programmatically using named imports from `vcl-tools`.
+This will allow you to generate any type of VCL code using `VCLAstPrinter`.
+
+#### Statements
+* Program
+* ExpressionStatement
+* BlockStatement
+* AssignmentStatement
+* LabelStatement
+* CallStatement
+* EnterStatement
+* GoToStatement
+* IfStatement
+* WhileStatement
+* ReturnStatement
+* ExitStatement
+* VariableDeclaration
+* ConstantDeclaration
+* AliasDeclaration
+* EqualsDeclaration
+* BitDeclaration
+* IncludeStatement
+* ModuleStatement
+#### Expressions
+* Identifier
+* Literal
+* CallExpression
+* BinaryExpression
+* UnaryExpression
+* LogicalExpression
+
+## More examples:
+
+### Finding all CAN mailboxes using VCLASTVisitor
+
+This example uses `VCLASTVisitor` to locate all CAN mailboxes used in a VCL source file, and fill a field `mailboxes`
+with the results (using a custom data structure `CanMailbox`).
+
+```typescript
+import { VCLASTVisitor, Identifier, Literal } from 'vcl-tools'
+
 enum BuiltInFunctions {
   SETUP_CAN_RECEIVE_MAILBOX = 'Setup_CAN_Receive_Mailbox',
   SETUP_CAN_TRANSMIT_MAILBOX = 'Setup_CAN_Transmit_Mailbox',
@@ -117,5 +203,7 @@ export class MailboxExtractorVisitor extends VCLASTVisitor {
   }
 ```
 
-### Known errors:
-1) The code formatter is very basic. A much better solution will be to re implement it as a prettier plugin (similar to [this](https://github.com/jhipster/prettier-java))
+## Known errors:
+
+1) The code formatter is very basic. A much better solution will be to re implement it as a prettier plugin (similar
+   to [this](https://github.com/jhipster/prettier-java))
