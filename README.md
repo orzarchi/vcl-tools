@@ -3,6 +3,15 @@
 Tools to parse a Curtis VCL source file into an AST. You can also pretty-print the AST back into a text file, or extend
 the provided parser to create extensions to the language.
 
+## Installation
+```
+npm install vcl-tools
+
+# OR
+
+yarn add vcl-tools
+```
+
 ## Usage
 ```typescript
 import { parseVCLtoAST, Program, BitDeclaration, Identifier } from 'vcl-tools'
